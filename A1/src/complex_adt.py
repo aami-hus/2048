@@ -48,8 +48,25 @@ class ComplexT:
 		im = self.__x*num.imag + self.__y*num.real
 		return ComplexT(r, im)
 
+	def recip():
+		r = self.__x/(self.__x**2+self.__y**2)
+		im = -self.__y/(self.__x**2+self.__y**2)
+		return ComplexT(r, im)
+
 	def div(self, num):
 		r = (self.__x*num.real + self.__y*num.imag)*(1/(num.real**2+num.imag**2))
 		im = (self.__y*num.real + self.__x*num.imag)*(1/(num.real**2+num.imag**2))
 		return ComplexT(r, im)
 
+	def div_ver2(self, num):
+		return self.mult(num.recip)
+
+	def sqrt(self):
+		r = sqrt((self.__x + self.get_r)/2)
+		if self.__y > 0:
+			im = sqrt((-self.__x + self.get_r)/2)
+		else:
+			im = -sqrt((-self.__x + self.get_r)/2)
+		return ComplexT(r, im)
+
+	#The functions div, div_ver2, and sqrt were done assuming that the complex numbers were not of the form z = 0 + 0i.
