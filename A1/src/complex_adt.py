@@ -21,15 +21,15 @@ class ComplexT:
 		return sqrt(self.__x**2 + self.__y**2)
 
 	def get_phi(self):
-		if x > 0 or y != 0:
-			return 2*atan(y/(self.get_r+x))
-		elif x < 0 and y == 0:
+		if self.__x > 0 or self.__y != 0:
+			return 2*atan(self.__y/(self.get_r()+self.__x))
+		elif self.__x < 0 and self.__y == 0:
 			return pi
 		else:
 			return "The phase is undefined."
 
 	def equal(self, num):
-		if self.__x == num.real and self.__y == num.imag:
+		if self.__x == num.real() and self.__y == num.imag():
 			return True
 		else:
 			return False
@@ -38,35 +38,30 @@ class ComplexT:
 		return ComplexT(self.__x, -self.__y)
 
 	def add(self, num):
-		return ComplexT(self.__x + num.real, self.__y + num.imag)
+		return ComplexT(self.__x + num.real(), self.__y + num.imag())
 
 	def sub(self, num):
-		return ComplexT(self.__x - num.real, self.__y - num.imag)
+		return ComplexT(self.__x - num.real(), self.__y - num.imag())
 
 	def mult(self, num):
-		r = self.__x*num.real - self.__y*num.imag
-		im = self.__x*num.imag + self.__y*num.real
+		r = self.__x*num.real() - self.__y*num.imag()
+		im = self.__x*num.imag() + self.__y*num.real()
 		return ComplexT(r, im)
 
-	def recip():
+	def recip(self):
 		r = self.__x/(self.__x**2+self.__y**2)
 		im = -self.__y/(self.__x**2+self.__y**2)
 		return ComplexT(r, im)
 
 	def div(self, num):
-		r = (self.__x*num.real + self.__y*num.imag)*(1/(num.real**2+num.imag**2))
-		im = (self.__y*num.real + self.__x*num.imag)*(1/(num.real**2+num.imag**2))
-		return ComplexT(r, im)
-
-	def div_ver2(self, num):
-		return self.mult(num.recip)
+		return self.mult(num.recip())
 
 	def sqrt(self):
-		r = sqrt((self.__x + self.get_r)/2)
+		r = sqrt((self.__x + self.get_r())/2)
 		if self.__y > 0:
-			im = sqrt((-self.__x + self.get_r)/2)
+			im = sqrt((-self.__x + self.get_r())/2)
 		else:
-			im = -sqrt((-self.__x + self.get_r)/2)
+			im = -sqrt((-self.__x + self.get_r())/2)
 		return ComplexT(r, im)
 
-	#The functions div, div_ver2, and sqrt were done assuming that the complex numbers were not of the form z = 0 + 0i.
+	#The functions div and sqrt were done assuming that the complex numbers were not of the form z = 0 + 0i.
