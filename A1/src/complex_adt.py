@@ -28,9 +28,28 @@ class ComplexT:
 		else:
 			return "The phase is undefined."
 
-	def equal(self, complexnum):
-		if self.__x == complexnum.real and self.__y == complexnum.imag:
+	def equal(self, num):
+		if self.__x == num.real and self.__y == num.imag:
 			return True
 		else:
 			return False
+
+	def conj(self):
+		return ComplexT(self.__x, -self.__y)
+
+	def add(self, num):
+		return ComplexT(self.__x + num.real, self.__y + num.imag)
+
+	def sub(self, num):
+		return ComplexT(self.__x - num.real, self.__y - num.imag)
+
+	def mult(self, num):
+		r = self.__x*num.real - self.__y*num.imag
+		im = self.__x*num.imag + self.__y*num.real
+		return ComplexT(r, im)
+
+	def div(self, num):
+		r = (self.__x*num.real + self.__y*num.imag)*(1/(num.real**2+num.imag**2))
+		im = (self.__y*num.real + self.__x*num.imag)*(1/(num.real**2+num.imag**2))
+		return ComplexT(r, im)
 
