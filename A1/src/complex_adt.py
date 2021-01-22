@@ -1,7 +1,7 @@
 ## @file complex_adt.py
-#  @author 
-#  @brief 
-#  @date 
+#  @author Aamina Hussain
+#  @brief contains class that has methods for working with complex numbers
+#  @date 21/01/2021
 
 from math import sqrt, atan, pi
 
