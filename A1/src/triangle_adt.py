@@ -1,9 +1,11 @@
 ## @file triangle_adt.py
-#  @author 
-#  @brief 
-#  @date 
+#  @author Aamina Hussain
+#  @brief contains a class that works with triangles
+#  @date 21/01/2021
 
 from math import sqrt, atan, pi
+from enum import Enum
+
 
 class TriangleT:
 
