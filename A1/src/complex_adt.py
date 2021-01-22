@@ -8,8 +8,8 @@ from math import sqrt, atan, pi
 class ComplexT:
 
 	def __init__(self, x, y):
-		self.__x = x
-		self.__y = y
+		self.__x = float(x)
+		self.__y = float(y)
 
 	def real(self):
 		return self.__x
