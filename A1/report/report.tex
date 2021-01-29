@@ -17,7 +17,7 @@
 \newcounter{stepnum}
 
 \title{Assignment 1 Solution}
-\author{Your Name and macid}
+\author{Aamina Hussain, hussaa54}
 \date{\today}
 
 \begin {document}
@@ -31,14 +31,18 @@ are critiqued and then various related discussion questions are answered.
 
 \section{Assumptions and Exceptions} \label{AssumptAndExcept}
 
+For the div method from the ComplexT class, I assumed that the complex numbers created were not of the form z = 0 + 0i, so as to avoid a dividing by zero error. For the sqrt method from the ComplexT class, I assumed that y (where z = x + yi) would not be zero. I raised an exception for the get\_phi method of the ComplexT class that returned "The phase is undefined" when the complex number was of the form z = 0 + 0i. Lastly, for the TriangleT class, I assumed that none of the inputs (for any method) would be negative numbers, since side lengths cannot be negative.
 
 \section{Test Cases and Rationale} \label{Testing}
 
+For most of the methods, I only had one test case. This is because they were simple methods, and as long as the output of the method is the same as the output of the calculator, the method would be correct. The methods I only had one test case for include real, imag, get\_r, conj, add, sub, recip, and div from the ComplexT class, and get sides, perim, and area from the TriangleT class. For the rest of the methods, I did the same number of test cases (or more) depending on how many possible outcomes there were for that method. For example, the equal method for both ComplexT and TriangleT have two outcomes: they can either be equal (True) or not equal (False). For this reason, I had two test cases for the equal method (ComplexT). For the TriangleT equal method, in addition to those two test cases, I had one where the sides were listed in a different order to make sure the method still outputted true regardless of what order the sides were listed in. The is\_valid method (TriangleT) also had three test cases since I had to test at least one valid triangle and one invalid triangle. I also only did one test case for sqrt (ComplexT), but afterward, I realized I should have done at lease two, since I had to test when y (where z = x + yi) was positive and when y was negative. 
 
 \section{Results of Testing Partner's Code}
 
+There were no failed test cases when I tested my partner's code using my test\_driver.py file. Although we were told it was likely that one or many of our test cases might fail due to ambiguity/abstraction in some parts of the assignment, I was not surprised that my partner's code passed my test cases; taking a closer look at our code, I realized that it was quite similar. I also believe another reason the code passes was because I tried to \emph{generalize} my test cases. However, I was not able to test the tri\_type method (TriangleT) on my partner's code. This is because I was unable to finish that specific method for my own assignment, and therefore did not have any test cases for it. 
 
 \section{Critique of Given Design Specification}
+
 
 
 \section{Answers to Questions}
