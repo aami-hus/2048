@@ -31,7 +31,7 @@ are critiqued and then various related discussion questions are answered.
 
 \section{Assumptions and Exceptions} \label{AssumptAndExcept}
 
-For the div method from the ComplexT class, I assumed that the complex numbers created were not of the form z = 0 + 0i, so as to avoid a dividing by zero error. For the sqrt method from the ComplexT class, I assumed that y (where z = x + yi) would not be zero. I raised an exception for the get\_phi method of the ComplexT class that returned "The phase is undefined" when the complex number was of the form z = 0 + 0i. Lastly, for the TriangleT class, I assumed that none of the inputs (for any method) would be negative numbers, since side lengths cannot be negative.
+For the div method from the ComplexT class, I assumed that the complex numbers created were not of the form z = 0 + 0i, so as to avoid a dividing by zero error. For the sqrt method from the ComplexT class, I assumed that y (where z = x + yi) would not be zero. I raised an exception for the get\_phi method of the ComplexT class that returned "The phase is undefined" when the complex number was of the form z = 0 + 0i. Lastly, for the TriangleT class, I assumed that none of the inputs (for any method) would be negative numbers, since side lengths cannot be negative. I also assumed that for the perim and area methods, the triangles would be geometrically valid.
 
 \section{Test Cases and Rationale} \label{Testing}
 
@@ -49,8 +49,15 @@ There were no failed test cases when I tested my partner's code using my test\_d
 
 \begin{enumerate}[(a)]
 
-\item 
-\item ...
+\item The real, imag, get\_r, get\_phi, conj, recip, and sqrt methods from ComplexT and the get\_sides, perim, area, is\_valid, and tri\_type methods from TriangleT are selectors (getters). Assuming that a mutator (setter) is a method that changes or updates the current state of an object, there are no mutator methods. This is because the methods that seem like they are changing the object (such as add from ComplexT) are not actually changing the current object. They are instead returning a newly created object.
+\item State variables for ComplexT could be the real and imaginary parts of the complex number, or the magnitude and phase of the complex number. State variables for TriangleT could be the three sides of the triangle, or the three angles made by the adjacent sides of the triangle.
+\item No, it would not make sense to add methods for less than and greater than. This is because you cannot linearly order complex numbers, since they exist in a two-dimensional plane.
+\item Yes, it is possible that the integer inputs to the constructor for TriangleT will not form a geometrically valid triangle. I believe the class should check if the inputs create a valid triangle before creating the object. If it does not create a valid triangle, an exception should be raised and a suitable message should be outputted. This is provide immediate feedback to the user, so that no errors arise in the future and the performance of the other methods are not affected. Having each method (such as area) check if the triangle is valid before it runs requires an additional step and many compares. 
+\item This is a bad idea; the user could input the incorrect type of triangle, which would result in them receiving incorrect information every time they want to access the type. There would be more room for error. Although calculating the type of triangle would take longer than just accessing the state variable, having incorrect data is not desirable. However, if it was guaranteed that the type inputted was correct, then it would be a good idea. Accessing the type of the triangle would be much quicker.
+\item f
+\item g
+\item h
+\item i
 
 \end{enumerate}
 
