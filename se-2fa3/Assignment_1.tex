@@ -278,13 +278,13 @@ strong induction.
     &= (2i+2j)+1\\
     &= 2(i+j)+1\\
   \end{align*}
-  Since the result is a number multiplied by 2, or an even number $+ 1$, we know that an odd number $+$ an even number results in an odd number.\\
+  Since the result is a number multiplied by 2, or an even number, and $1$ is added to that even number, we know that an odd number $+$ an even number results in an odd number.\\
 
-  \emph{Proof for Q2.} Let $P(n) \equiv \mname{fib}(n)$. Let $P(n)$ hold iff $\mname{fib}(n)$ is even when $n = 3k$ for some $k \in \mathbb{N}$, is odd when $n = 3k + 1$ for some $k \in \mathbb{N}$, and is odd when $n = 3k + 2$ for some $k \in \mathbb{N}$.
+  \emph{Proof for Q2.} Let $P(n) \equiv \mname{fib}(n)$. Let $P(n)$ hold iff $\mname{fib}(n)$ is even when $n = 3k$ for some $k \in \mathbb{N}$, is odd when $n = 3k + 1$ for some $k \in \mathbb{N}$, and is odd when $n = 3k + 2$ for some $k \in \mathbb{N}$. We will prove $P(n)$ for all $n \in \mathbb{N}$ using strong induction.
   
     \medskip
 
-  \emph{Base case (1)}: We must show $P(n)$ where $n=3k$ is even when $k=0$.
+  \emph{Base case (1)}: We must show $P(n)$, where $n=3k$, is even when $k=0$.
   \begin{align*}
     &\phantom{{}=} \mname{fib}(3k) & \pnote{LHS of $P(3k)$}\\
     &= \mname{fib}(3*0)  & \pnote{sub k=0}\\
@@ -295,7 +295,7 @@ strong induction.
 
   So $P(3k)$ holds.
 
-  \emph{Base case (2)}: We must show $P(n)$ where $n=3k+1$ is odd when $k=0$.
+  \emph{Base case (2)}: We must show $P(n)$, where $n=3k+1$, is odd when $k=0$.
   \begin{align*}
     &\phantom{{}=} \mname{fib}(3k+1) & \pnote{LHS of $P(3k+1)$}\\
     &= \mname{fib}(3*0+1)  & \pnote{sub k=0}\\
@@ -306,7 +306,7 @@ strong induction.
 
   So $P(3k+1)$ holds.
 
-  \emph{Base case (3)}: We must show $P(n)$ where $n=3k+2$ is odd when $k=0$.
+  \emph{Base case (3)}: We must show $P(n)$, where $n=3k+2$, is odd when $k=0$.
   \begin{align*}
     &\phantom{{}=} \mname{fib}(3k+2) & \pnote{LHS of $P(3k+2)$}\\
     &= \mname{fib}(3*0+2)  & \pnote{sub k=0}\\
