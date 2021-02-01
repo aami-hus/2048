@@ -195,9 +195,50 @@ strong induction.
 
   \bigskip
 
-  \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+  \textbf{Aamina Hussain, hussaa54, January 31, 2021}
 
-  \textcolor{blue}{\textbf{Put your solution here.}}
+  \emph{Proof.} Let $P(n) \equiv \sum^{n}_{i = 0} i *
+    \mname{fact}(i) = \mname{fact}(n+1) - 1$. We will prove $P(n)$ for all $n \in
+    \mathbb{N}$ by weak induction.
+    
+    \medskip
+
+  \emph{Base case}: $n = 0$.  We must show $P(0)$.
+  \begin{align*}
+    &\phantom{{}=} \sum_{i=0}^{0} i * \mname{fact}(i) & \pnote{LHS of $P(0)$}\\
+    &= 0*\mname{fact}(0) + \sum_{i=0}^{0-1} i * \mname{fact}(i)  & \pnote{def. of $\textstyle{\sum}_{i=m}^{n} f(i)$ when $m \le n$}\\
+    &= 0*\mname{fact}(0) + \sum_{i=0}^{-1} i * \mname{fact}(i)          & \pnote{arithmetic}\\
+    &= 0*\mname{fact}(0) + 0      & \pnote{def. of $\textstyle{\sum}_{i=m}^{n} f(i)$ when $m > n$}\\
+    &= 0    & \pnote{arithmetic}\\
+    &= 1-1    & \pnote{arithmetic}\\
+    &= \mname{fact}(0)-1    & \pnote{def. of factorial when n=0}\\
+    &= \mname{fact}(0)*1-1    & \pnote{arithmetic}\\
+    &= \mname{fact}(1-1)*1-1    & \pnote{arithmetic}\\
+    &= \mname{fact}(1)-1    & \pnote{def. of factorial when $n > 0$}\\
+    &= \mname{fact}(0+1)-1    & \pnote{arithmetic; RHS of $P(0)$}
+  \end{align*}
+
+  So $P(0)$ holds.
+
+  \medskip
+
+  \emph{Induction step}: $n \ge 0$. Assume $P(n)$. We must show $P(n + 1)$.
+  \begin{align*}
+    &\phantom{{}=} \sum_{i=0}^{n+1} i * \mname{fact}(i)   & \pnote{LHS of $P(n + 1)$}\\
+    &=(n+1)*\mname{fact}(n+1)+\sum_{i=0}^{(n+1)-1} i * \mname{fact}(i)       & \pnote{def. of $\textstyle{\sum}_{i=m}^{n} f(i)$ when $m \le n$}\\
+    &=(n+1)*\mname{fact}(n+1)+\sum_{i=0}^{n} i * \mname{fact}(i)  & \pnote{arithmetic}\\
+    &=(n+1)*\mname{fact}(n+1)+\mname{fact}(n+1)-1 & \pnote{induction hypothesis: $P(n)$}\\
+    &=n*\mname{fact}(n+1)+\mname{fact}(n+1)+\mname{fact}(n+1)-1   & \pnote{arithmetic}\\
+    &=n*\mname{fact}(n+1)+2\mname{fact}(n+1)-1   & \pnote{arithmetic}\\
+    &=(n+2)*\mname{fact}(n+1)-1   & \pnote{arithmetic}\\
+    &=(n+2)*\mname{fact}((n+2)-1)-1   & \pnote{arithmetic}\\
+    &=\mname{fact}(n+2)-1   & \pnote{def. of factorial when $n > 0$}\\
+    &=\mname{fact}((n+1)+1)-1   & \pnote{arithmetic; RHS of $P(n + 1)$}
+  \end{align*}
+  So $P(n + 1)$ holds.\\
+  Therefore, $P(n)$ holds for all $n \in \mathbb{N}$ by weak induction.
+
+  \medskip
 
   \bigskip
 
@@ -208,12 +249,119 @@ strong induction.
 
   \bigskip
 
-  \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+  \textbf{Aamina Hussain, hussaa54, January 31, 2021}
 
-  \textcolor{blue}{\textbf{Put your solution here.}}
+  \emph{Lemma 1.} Proving that an even number $+$ an even number results in an even number.\\
+  We know that anything multiplied by $2$ is even, so let $x=2i$ and $y=2j$.\\
+  \begin{align*}
+    &\phantom{{}=} x+y\\
+    &= (2i)+(2j)\\
+    &= 2(i+j)\\
+  \end{align*}
+  Since the result is also multiplied by 2, we know that adding 2 even numbers results in an even number.\\
+
+  \emph{Lemma 2.} Proving that an odd number $+$ an odd number results in an even number.\\
+  We know that anything multiplied by $2$ is even, and adding $1$ to an even number results in an odd number, so let $x=2i+1$ and $y=2j+1$.\\
+  \begin{align*}
+    &\phantom{{}=} x+y\\
+    &= (2i+1)+(2j+1)\\
+    &= 2i+2j+2\\
+    &= 2(i+j+1)\\
+  \end{align*}
+  Since the result is also multiplied by 2, we know that adding 2 odd numbers results in an even number.\\
+
+  \emph{Lemma 3.} Proving that an odd number $+$ an even number results in an odd number.\\
+  We know that anything multiplied by $2$ is even, and adding $1$ to an even number results in an odd number, so let $x=2i$ and $y=2j+1$.\\
+  \begin{align*}
+    &\phantom{{}=} x+y\\
+    &= (2i)+(2j+1)\\
+    &= (2i+2j)+1\\
+    &= 2(i+j)+1\\
+  \end{align*}
+  Since the result is a number multiplied by 2, or an even number $+ 1$, we know that an odd number $+$ an even number results in an odd number.\\
+
+  \emph{Proof for Q2.} Let $P(n) \equiv \mname{fib}(n)$. Let $P(n)$ hold iff $\mname{fib}(n)$ is even when $n = 3k$ for some $k \in \mathbb{N}$, is odd when $n = 3k + 1$ for some $k \in \mathbb{N}$, and is odd when $n = 3k + 2$ for some $k \in \mathbb{N}$.
+  
+    \medskip
+
+  \emph{Base case (1)}: We must show $P(n)$ where $n=3k$ is even when $k=0$.
+  \begin{align*}
+    &\phantom{{}=} \mname{fib}(3k) & \pnote{LHS of $P(3k)$}\\
+    &= \mname{fib}(3*0)  & \pnote{sub k=0}\\
+    &= \mname{fib}(0) & \pnote{arithmetic}\\
+    &= 0 & \pnote{def. of fib. when $n=0$}\\
+    &= even    & \pnote{zero is even; RHS of $P(3k)$}\\
+  \end{align*}
+
+  So $P(3k)$ holds.
+
+  \emph{Base case (2)}: We must show $P(n)$ where $n=3k+1$ is odd when $k=0$.
+  \begin{align*}
+    &\phantom{{}=} \mname{fib}(3k+1) & \pnote{LHS of $P(3k+1)$}\\
+    &= \mname{fib}(3*0+1)  & \pnote{sub k=0}\\
+    &= \mname{fib}(1) & \pnote{arithmetic}\\
+    &= 1 & \pnote{def. of fib. when $n=1$}\\
+    &= odd    & \pnote{one is odd; RHS of $P(3k+1)$}\\
+  \end{align*}
+
+  So $P(3k+1)$ holds.
+
+  \emph{Base case (3)}: We must show $P(n)$ where $n=3k+2$ is odd when $k=0$.
+  \begin{align*}
+    &\phantom{{}=} \mname{fib}(3k+2) & \pnote{LHS of $P(3k+2)$}\\
+    &= \mname{fib}(3*0+2)  & \pnote{sub k=0}\\
+    &= \mname{fib}(2) & \pnote{arithmetic}\\
+    &= \mname{fib}(2-1)+\mname{fib}(2-2) & \pnote{def. of fib. when $n \ge 2$}\\
+    &= \mname{fib}(1)+\mname{fib}(0) & \pnote{arithmetic}\\
+    &= 1+0 & \pnote{def. of fib. when $n=0, n=1$}\\
+    &= 1 & \pnote{arithmetic}\\
+    &= odd    & \pnote{one is odd; RHS of $P(3k+2)$}\\
+  \end{align*}
+
+  So $P(3k+2)$ holds.
+
+  \medskip
+
+  \emph{Induction step (1)}: $n \ge 0$. Assume $P(n)$ holds for all $m \le n$. We must show $P(n)$ holds for $n=3k$. Assume $3k-1$ and $3k-2$ ($3k-1 < 3k$ and $3k-2 < 3k$).
+
+  \begin{align*}
+    &\phantom{{}=} \mname{fib}(3k) & \pnote{LHS of $P(3k)$}\\
+    &= \mname{fib}(3k-1)+\mname{fib}(3k-2) & \pnote{def. of fib. when $n \ge 2$}\\
+    &= odd + odd   & \pnote{assumption $P(3k-1)$ and $P(3k-2)$}\\
+    &= even & \pnote{lemma 2; RHS of $P(3k)$}\\
+  \end{align*}
+
+  So $P(3k)$ holds.\\
+
+  \emph{Induction step (2)}: $n \ge 0$. Assume $P(n)$ holds for all $m \le n$. We must show $P(n)$ holds for $n=3k+1$. Assume $3k$ and $3k-1$ ($3k < 3k+1$ and $3k-1 < 3k+1$). 
+
+  \begin{align*}
+    &\phantom{{}=} \mname{fib}(3k+1) & \pnote{LHS of $P(3k+1)$}\\
+    &= \mname{fib}((3k+1)-1)+\mname{fib}((3k+1)-2) & \pnote{def. of fib. when $n \ge 2$}\\
+    &= \mname{fib}(3k)+\mname{fib}(3k-1) & \pnote{arithmetic}\\
+    &= even + odd   & \pnote{assumption $P(3k)$ and $P(3k-1)$}\\
+    &= odd & \pnote{lemma 3; RHS of $P(3k+1)$}\\
+  \end{align*}
+
+  So $P(3k+1)$ holds.\\
+
+  \emph{Induction step (3)}: $n \ge 0$. Assume $P(n)$ holds for all $m \le n$. We must show $P(n)$ holds for $n=3k+2$. Assume $3k$ and $3k+1$ ($3k < 3k+2$ and $3k+1 < 3k+2$). 
+
+  \begin{align*}
+    &\phantom{{}=} \mname{fib}(3k+2) & \pnote{LHS of $P(3k+2)$}\\
+    &= \mname{fib}((3k+2)-1)+\mname{fib}((3k+2)-2) & \pnote{def. of fib. when $n \ge 2$}\\
+    &= \mname{fib}(3k+1)+\mname{fib}(3k) & \pnote{arithmetic}\\
+    &= odd + even   & \pnote{assumption $P(3k)$ and $P(3k+1$)}\\
+    &= odd & \pnote{lemma 3; RHS of $P(3k+2)$}\\
+  \end{align*}
+
+  So $P(3k+2)$ holds.\\
+
+
+  Therefore, $P(n)$ holds for all $n \in \mathbb{N}$ by strong induction.
+
+  \medskip
 
 \end{enumerate}
 
 \end{document}
-
-
