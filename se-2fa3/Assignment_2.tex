@@ -7,6 +7,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{color}
+\usepackage[margin=0.7in]{geometry}
 
 \renewcommand{\labelenumi}{\theenumi.}
 \renewcommand{\labelenumii}{\theenumii.}
@@ -130,9 +131,53 @@ Let \mname{SimpleTree} be the inductive
   Prove that, for all $t \in \mname{SimpleTree}$, \[\mname{leaves}(t) \le
   \mname{branches}(t) + 1.\]
 
-  \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+  \textbf{Aamina Hussain, hussaa54, February 7, 2021}
 
-  \textcolor{blue}{\textbf{Put your solution here.}}
+  \emph{Proof.} Let $P(n) \equiv \mname{leaves}(t) \le \mname{branches}(t)+1$. We will prove $P(n)$ for all $t \in \mname{SimpleTree}$ using structural induction.
+  
+  \medskip
+
+  \emph{Base case}: $n = \mname{Leaf}(n)$.  We must show $P(\mname{Leaf}(n))$.
+  \begin{align*}
+    &\phantom{{}=}\mname{leaves}(\mname{Leaf}(n)) \le \mname{branches}(\mname{Leaf}(n))+1 \\
+    &= 1 \le \mname{branches}(\mname{Leaf}(n))+1  & \pnote{def. of $\mname{leaves}$}\\
+    &= 1 \le 0 + 1 & \pnote{def. of $\mname{branches}$}\\
+    &= 1 \le 1  & \pnote{arithmetic}\\
+    &= true    & \pnote{obvious; end of proof}\\
+  \end{align*}
+
+  So $P(\mname{Leaf}(n))$ holds.
+
+  \medskip
+
+  \emph{Induction step (1)}: Assume $P(t)$, where $t \in \mname{SimpleTree}$. We must show $P(\mname{Branch1}(t_0))$.
+  \begin{align*}
+    &\phantom{{}=}\mname{leaves}(\mname{Branch1}(t_0)) \le \mname{branches}(\mname{Branch1}(t_0))+1 \\
+    &= \mname{leaves}(t_0) \le \mname{branches}(\mname{Branch1}(t_0))+1  & \pnote{def. of $\mname{leaves}$}\\
+    &= \mname{leaves}(t_0) \le 1 + \mname{branches}(t_0)+1 & \pnote{def. of $\mname{branches}$}\\
+    &= \mname{leaves}(t_0) \le \mname{branches}(t_0)+2  & \pnote{arithmetic}\\
+    &= \mname{branches}(t_0)+1 \le \mname{branches}(t_0)+2  & \pnote{induction hypothesis}\\
+    &= true    & \pnote{obvious; end of proof}\\
+  \end{align*}
+
+  So $P(\mname{Branch1}(t_0))$ holds.\\
+
+  \medskip
+
+  \emph{Induction step (2)}: Assume $P(t_1)$ and $P(t_2)$, where $t_1, t_2 \in \mname{SimpleTree}$. We must show $P(\mname{Branch2}(t_1, t_2))$.
+  \begin{flalign*}
+    &\phantom{{}=}\mname{leaves}(\mname{Branch2}(t_1, t_2)) \le \mname{branches}(\mname{Branch2}(t_1, t_2))+1 \\
+    &= \mname{leaves}(t_1)+\mname{leaves}(t_2) \le \mname{branches}(\mname{Branch2}(t_1, t_2))+1 & \pnote{def. of $\mname{leaves}$}\\
+    &= \mname{leaves}(t_1)+\mname{leaves}(t_2) \le 1 + \mname{branches}(t_1)+\mname{branches}(t_2)+1 & \pnote{def. of $\mname{branches}$}\\
+    &= \mname{leaves}(t_1)+\mname{leaves}(t_2) \le \mname{branches}(t_1)+\mname{branches}(t_2)+2  & \pnote{arithmetic}\\
+    &= \mname{branches}(t_1)+1+\mname{branches}(t_2)+1 \le \mname{branches}(t_1)+\mname{branches}(t_2)+2  & \pnote{ind. hyp.}\\
+    &= \mname{branches}(t_1)+\mname{branches}(t_2)+2 \le \mname{branches}(t_1)+\mname{branches}(t_2)+2  & \pnote{arithmetic}\\
+    &= true    & \pnote{obvious; end of proof}\\
+  \end{flalign*}
+
+  So $P(\mname{Branch2}(t_1, t_2))$ holds.\\
+
+  Therefore, $P(n)$ holds for all $t \in \mname{SimpleTree}$ by structural induction.
 
   \bigskip
 
@@ -260,10 +305,185 @@ Let \mname{SimpleTree} be the inductive
 
   \bigskip
 
-  \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+  \textbf{Aamina Hussain, hussaa54, February 7, 2021}
 
-  \textcolor{blue}{\textbf{Put your solution here.}}
+  \emph{Proof.} Let $P(n) \equiv \mname{val}(\mname{add}(u,v)) = \mname{val}(u) + \mname{val}(v)$. We will prove $P(n)$ for all $u,v \in \mname{BinNum}$ such that $n = \mname{len}(u) +
+  \mname{len}(v)$ using strong induction.
+  
+  \medskip
 
+  \emph{Induction step (1)}: $n \ge 0$. Assume $P(n)$ holds for all $m \le n$. We must show $P(n)$ holds for $n = \mname{len}(\mname{Zero}) + \mname{len}(\mname{Zero})$.
+
+  \begin{flalign*}
+    &\phantom{{}=} \mname{val}(\mname{add}(\mname{Zero},\mname{Zero})) & \pnote{LHS of $P(n)$}\\
+    &= \mname{val}(\mname{Zero}) & \pnote{def. of add}\\
+    &= 0   & \pnote{def. of val}\\
+    &= 0 + 0  & \pnote{arithmetic}\\
+    &= \mname{val}(\mname{Zero})+\mname{val}(\mname{Zero}) & \pnote{def. of val; RHS of $P(n)$}\\
+  \end{flalign*}
+
+  So $P(n)$ where $n = \mname{len}(\mname{Zero}) + \mname{len}(\mname{Zero})$ holds.\\
+
+  \emph{Induction step (2)}: $n \ge 0$. Assume $P(n)$ holds for all $m \le n$. We must show $P(n)$ holds for $n = \mname{len}(\mname{One}) + \mname{len}(\mname{Zero})$.
+
+  \begin{flalign*}
+    &\phantom{{}=} \mname{val}(\mname{add}(\mname{One},\mname{Zero})) & \pnote{LHS of $P(n)$}\\
+    &= \mname{val}(\mname{One}) & \pnote{def. of add}\\
+    &= 1   & \pnote{def. of val}\\
+    &= 1 + 0  & \pnote{arithmetic}\\
+    &= \mname{val}(\mname{One})+\mname{val}(\mname{Zero}) & \pnote{def. of val; RHS of $P(n)$}\\
+  \end{flalign*}
+
+  So $P(n)$ where $n = \mname{len}(\mname{One}) + \mname{len}(\mname{Zero})$ holds.\\
+
+  \emph{Induction step (3)}: $n \ge 0$. Assume $P(n)$ holds for all $m \le n$. We must show $P(n)$ holds for $n = \mname{len}(\mname{Zero}) + \mname{len}(\mname{One})$.\\
+
+  The proof is the same as \emph{Induction step (2)} because the definition of add provides the same outcome for $\mname{add}(\mname{Zero}, \mname{One})$ and $\mname{add}(\mname{One}, \mname{Zero})$
+  So $P(n)$ where $n = \mname{len}(\mname{Zero}) + \mname{len}(\mname{One})$ holds.\\
+
+  \emph{Induction step (4)}: $n \ge 0$. Assume $P(n)$ holds for all $m \le n$. We must show $P(n)$ holds for $n = \mname{len}(\mname{One}) + \mname{len}(\mname{One})$.
+
+  \begin{flalign*}
+    &\phantom{{}=} \mname{val}(\mname{add}(\mname{One},\mname{One})) & \pnote{LHS of $P(n)$}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{One})) & \pnote{def. of add}\\
+    &= 2*\mname{val}(\mname{One})   & \pnote{def. of val}\\
+    &= 2*1  & \pnote{def. of val}\\
+    &= 2  & \pnote{arithmetic}\\
+    &= 1 + 1  & \pnote{arithmetic}\\
+    &= \mname{val}(\mname{One})+\mname{val}(\mname{One}) & \pnote{def. of val; RHS of $P(n)$}\\
+  \end{flalign*}
+
+  So $P(n)$ where $n = \mname{len}(\mname{One}) + \mname{len}(\mname{One})$ holds.\\
+
+  \emph{Induction step (5)}: $n \ge 0$. Assume $P(n)$ holds for all $m \le n$. We must show $P(n)$ holds for $n = \mname{len}(\mname{JoinZero}(\mname{Zero})) + \mname{len}(\mname{One})$.
+
+  \begin{flalign*}
+    &\phantom{{}=} \mname{val}(\mname{add}(\mname{JoinZero}(\mname{Zero}),\mname{One})) & \pnote{LHS of $P(n)$}\\
+    &= \mname{val}(\mname{JoinOne}(\mname{Zero})) & \pnote{def. of add}\\
+    &= 2*\mname{val}(\mname{Zero}) +1   & \pnote{def. of val}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{Zero}))+\mname{val}(\mname{One})  & \pnote{def. of val; RHS of $P(n)$}\\
+  \end{flalign*}
+
+  So $P(n)$ where $n = \mname{len}(\mname{JoinZero}(\mname{Zero})) + \mname{len}(\mname{One})$ holds.\\
+
+  \emph{Induction step (6)}: $n \ge 0$. Assume $P(n)$ holds for all $m \le n$. We must show $P(n)$ holds for $n = \mname{len}(\mname{JoinZero}(\mname{One})) + \mname{len}(\mname{One})$.
+
+  \begin{flalign*}
+    &\phantom{{}=} \mname{val}(\mname{add}(\mname{JoinZero}(\mname{One}),\mname{One})) & \pnote{LHS of $P(n)$}\\
+    &= \mname{val}(\mname{JoinOne}(\mname{One})) & \pnote{def. of add}\\
+    &= 2*\mname{val}(\mname{One}) +1   & \pnote{def. of val}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{One}))+\mname{val}(\mname{One})  & \pnote{def. of val; RHS of $P(n)$}\\
+  \end{flalign*}
+
+  So $P(n)$ where $n = \mname{len}(\mname{JoinZero}(\mname{One})) + \mname{len}(\mname{One})$ holds.\\
+
+  \emph{Induction step (7)}: $n \ge 0$. Assume $P(n)$ holds for all $m \le n$. We must show $P(n)$ holds for $n = \mname{len}(\mname{JoinOne}(\mname{Zero})) + \mname{len}(\mname{One})$.
+
+  \begin{flalign*}
+    &\phantom{{}=} \mname{val}(\mname{add}(\mname{JoinOne}(\mname{Zero}),\mname{One})) & \pnote{LHS of $P(n)$}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{add}(\mname{Zero}, \mname{One}))) & \pnote{def. of add}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{One})) & \pnote{def. of add}\\
+    &= 2*\mname{val}(\mname{One}) & \pnote{def. of val}\\
+    &= 2*1 & \pnote{def. of val}\\
+    &= 2 & \pnote{arithmetic}\\
+    &= (2*0+1)+1 & \pnote{arithmetic}\\
+    &= (2*\mname{val}(\mname{Zero})+1)+1 & \pnote{def. of val}\\
+    &= \mname{val}(\mname{JoinOne}(\mname{Zero}))+\mname{val}(\mname{One})  & \pnote{def. of val; RHS of $P(n)$}\\
+  \end{flalign*}
+
+  So $P(n)$ where $n = \mname{len}(\mname{JoinOne}(\mname{Zero})) + \mname{len}(\mname{One})$ holds.\\
+
+  \emph{Induction step (8)}: $n \ge 0$. Assume $P(n)$ holds for all $m \le n$. We must show $P(n)$ holds for $n = \mname{len}(\mname{JoinOne}(\mname{One})) + \mname{len}(\mname{One})$.
+
+  \begin{flalign*}
+    &\phantom{{}=} \mname{val}(\mname{add}(\mname{JoinOne}(\mname{One}),\mname{One})) & \pnote{LHS of $P(n)$}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{add}(\mname{One}, \mname{One}))) & \pnote{def. of add}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{JoinZero}(\mname{One}))) & \pnote{def. of add}\\
+    &= 2*\mname{val}(\mname{JoinZero}(\mname{One})) & \pnote{def. of val}\\
+    &= 2*2*\mname{val}(\mname{One}) & \pnote{def. of val}\\
+    &= 2*2*1 & \pnote{def. of val}\\
+    &= 4 & \pnote{arithmetic}\\
+    &= (2*1+1)+1 & \pnote{arithmetic}\\
+    &= (2*\mname{val}(\mname{One})+1)+1 & \pnote{def. of val}\\
+    &= \mname{val}(\mname{JoinOne}(\mname{One}))+\mname{val}(\mname{One})  & \pnote{def. of val; RHS of $P(n)$}\\
+  \end{flalign*}
+
+  So $P(n)$ where $n = \mname{len}(\mname{JoinOne}(\mname{One})) + \mname{len}(\mname{One})$ holds.\\
+
+    \emph{Induction step (9)}: $n \ge 0$. Assume $P(n)$ holds for all $m \le n$. We must show $P(n)$ holds for $n = \mname{len}(\mname{JoinZero}(\mname{Zero})) + \mname{len}(\mname{JoinZero}(\mname{Zero}))$.
+
+  \begin{flalign*}
+    &\phantom{{}=} \mname{val}(\mname{add}(\mname{JoinZero}(\mname{Zero}),\mname{JoinZero}(\mname{Zero}))) & \pnote{LHS of $P(n)$}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{add}(\mname{Zero}, \mname{Zero}))) & \pnote{def. of add}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{Zero}) & \pnote{def. of add}\\
+    &= 2*\mname{val}(\mname{Zero}) & \pnote{def. of val}\\
+    &= 2*0 & \pnote{def. of val}\\
+    &= 0 & \pnote{arithmetic}\\
+    &= 2*0 + 2*0 & \pnote{arithmetic}\\
+    &= (2*\mname{val}(\mname{Zero})) + (2*\mname{val}(\mname{Zero})) & \pnote{def. of val}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{Zero}))+\mname{val}(\mname{JoinZero}(\mname{Zero}))  & \pnote{def. of val; RHS of $P(n)$}\\
+  \end{flalign*}
+
+  So $P(n)$ where $n = \mname{len}(\mname{JoinZero}(\mname{Zero})) + \mname{len}(\mname{JoinZero}(\mname{Zero}))$ holds.\\
+
+  \emph{Induction step (10)}: $n \ge 0$. Assume $P(n)$ holds for all $m \le n$. We must show $P(n)$ holds for $n = \mname{len}(\mname{JoinZero}(\mname{Zero})) + \mname{len}(\mname{JoinZero}(\mname{Zero}))$.
+
+  \begin{flalign*}
+    &\phantom{{}=} \mname{val}(\mname{add}(\mname{JoinZero}(\mname{Zero}),\mname{JoinZero}(\mname{Zero}))) & \pnote{LHS of $P(n)$}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{add}(\mname{Zero}, \mname{Zero}))) & \pnote{def. of add}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{Zero}) & \pnote{def. of add}\\
+    &= 2*\mname{val}(\mname{Zero}) & \pnote{def. of val}\\
+    &= 2*0 & \pnote{def. of val}\\
+    &= 0 & \pnote{arithmetic}\\
+    &= 2*0 + 2*0 & \pnote{arithmetic}\\
+    &= (2*\mname{val}(\mname{Zero})) + (2*\mname{val}(\mname{Zero})) & \pnote{def. of val}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{Zero}))+\mname{val}(\mname{JoinZero}(\mname{Zero}))  & \pnote{def. of val; RHS of $P(n)$}\\
+  \end{flalign*}
+
+  So $P(n)$ where $n = \mname{len}(\mname{JoinZero}(\mname{Zero})) + \mname{len}(\mname{JoinZero}(\mname{Zero}))$ holds.\\
+
+  \emph{Induction step (11)}: $n \ge 0$. Assume $P(n)$ holds for all $m \le n$. We must show $P(n)$ holds for $n = \mname{len}(\mname{JoinZero}(\mname{One})) + \mname{len}(\mname{JoinZero}(\mname{One}))$.
+
+  \begin{flalign*}
+    &\phantom{{}=} \mname{val}(\mname{add}(\mname{JoinZero}(\mname{One}),\mname{JoinZero}(\mname{One}))) & \pnote{LHS of $P(n)$}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{add}(\mname{One}, \mname{One}))) & \pnote{def. of add}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{JoinZero}(\mname{One}))) & \pnote{def. of add}\\
+    &= 2*\mname{val}(\mname{JoinZero}(\mname{One})) & \pnote{def. of val}\\
+    &= 2*2*\mname{val}(\mname{One})& \pnote{def. of val}\\
+    &= 2*2*1 & \pnote{def. of val}\\
+    &= 4 & \pnote{arithmetic}\\
+    &= 2*1 + 2*1 & \pnote{arithmetic}\\
+    &= (2*\mname{val}(\mname{One})) + (2*\mname{val}(\mname{One})) & \pnote{def. of val}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{One}))+\mname{val}(\mname{JoinZero}(\mname{One}))  & \pnote{def. of val; RHS of $P(n)$}\\
+  \end{flalign*}
+
+  So $P(n)$ where $n = \mname{len}(\mname{JoinZero}(\mname{One})) + \mname{len}(\mname{JoinZero}(\mname{One}))$ holds.\\
+
+  \emph{Induction step (12)}: $n \ge 0$. Assume $P(n)$ holds for all $m \le n$. We must show $P(n)$ holds for $n = \mname{len}(\mname{JoinZero}(\mname{Zero})) + \mname{len}(\mname{JoinZero}(\mname{One}))$.
+
+  \begin{flalign*}
+    &\phantom{{}=} \mname{val}(\mname{add}(\mname{JoinZero}(\mname{Zero}),\mname{JoinZero}(\mname{One}))) & \pnote{LHS of $P(n)$}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{add}(\mname{Zero}, \mname{One}))) & \pnote{def. of add}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{One})) & \pnote{def. of add}\\
+    &= 2*\mname{val}(\mname{One}) & \pnote{def. of val}\\
+    &= 2*1 & \pnote{def. of val}\\
+    &= 0 + 2*1 & \pnote{arithmetic}\\
+    &= 2*0+2*1 & \pnote{arithmetic}\\
+    &= (2*\mname{val}(\mname{Zero})) + (2*\mname{val}(\mname{One})) & \pnote{def. of val}\\
+    &= \mname{val}(\mname{JoinZero}(\mname{Zero}))+\mname{val}(\mname{JoinZero}(\mname{One}))  & \pnote{def. of val; RHS of $P(n)$}\\
+  \end{flalign*}
+
+  So $P(n)$ where $n = \mname{len}(\mname{JoinZero}(\mname{Zero})) + \mname{len}(\mname{JoinZero}(\mname{One}))$ holds.\\
+
+  \medskip
+
+  Cases such as $\mname{val}(\mname{add}(\mname{Zero},u))$, \\
+  $\mname{val}(\mname{add}(\mname{One},\mname{JoinZero}(u)))$, \\
+  $\mname{val}(\mname{add}(\mname{One},\mname{JoinOne}(u)))$, \\
+  and $\mname{val}(\mname{add}(\mname{JoinZero}(u),\mname{JoinOne}(v)))$ were not done because due to the definition of add, they had the same outcome as other cases.\\
+
+  \medskip
+  Therefore, $P(n)$ holds for all $u,v \in \mname{BinNum}$ such that $n = \mname{len}(u) + \mname{len}(v)$ by strong induction.
 \ee
 
 \end{document}
