@@ -242,6 +242,8 @@ the language $\set{ua \mid u \in \Sigma^*}$.
   \begin{itemize}
     \item $\mname{between}(x,y) = z$ where $x, y, z \in \Sigma^*$ states that there is a word $z$ between the words $x$ and $y$. The word $z$ begins immediately after the end of the word $x$, and ends right before the beginning of the word $y$. For example, $\mname{between}(ab,cd) = xyz$ would be describing $abxyzcd$.
     \item $\mname{length}(x) = n$ where $x \in \Sigma^*$ and $n \in \mathbb{N}$ states the length of a word. For example, $\mname{length}(abc)=3$ would be true.
+    \item $\mname{suc}(x) = y$ where $x, y \in \Sigma^*$ states that the word y is immediately after the word x. For example, $\mname{suc}(sun) = day$ would be describing $sunday$.
+    \item $\mname{pred}(x) = y$ where $x, y \in \Sigma^*$ states that the word y is immediately before the word x. For example, $\mname{pred}(sun) = day$ would be describing $daysun$.
     \item The following is assuming the first position of the word is 1.
   \end{itemize}
 
@@ -254,10 +256,10 @@ the language $\set{ua \mid u \in \Sigma^*}$.
     $\ForallApp x \mdot (a(1) \land \mname{last}(x) \rightarrow a(x)) \lor (b(1) \land \mname{last}(x) \rightarrow b(x)) \lor (c(1) \land \mname{last}(x) \rightarrow c(x))$
 
     \item $\set{uaav \mid u, v \in \Sigma^*}$.\\
-    $\ForallApp u, v \in \Sigma^* \mdot \mname{between}(u, v) = aa$
+    $\ForallApp u, v \in \Sigma^* \mdot \mname{between}(u, v) = aa \land \mname{suc}(v)=\emptyset \land \mname{pred}(u)=\emptyset$
     
     \item $\set{uavbw \mid u,v,w \in \Sigma^*}$.\\
-    $\ForallApp u, v, w \in \Sigma^* \mdot \mname{between}(u, v) = a \land \mname{between}(v, w) = b$
+    $\ForallApp u, v, w \in \Sigma^* \mdot \mname{between}(u, v) = a \land \mname{between}(v, w) = b \land \mname{suc}(w)=\emptyset \land \mname{pred}(u)=\emptyset$
 
     \item $\Sigma^*$.\\
     $\ForallApp w \in \Sigma^* \mdot w$
