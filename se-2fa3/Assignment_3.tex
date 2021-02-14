@@ -7,6 +7,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{color}
+\usepackage[margin=0.7in]{geometry}
 
 \renewcommand{\labelenumi}{\theenumi.}
 \renewcommand{\labelenumii}{\theenumii.}
@@ -150,17 +151,84 @@ the language $\set{ua \mid u \in \Sigma^*}$.
     be mean there are $x,y \in \Sigma^*$ such that $xuy = v$.  That
     is, $u \le v$ holds iff $u$ is a subword of $v$.
 
+    \textbf{Aamina Hussain, hussaa54, February 14, 2021}
+
   \be
 
     \item Prove that $(\Sigma^*,\le)$ is a weak partial order.
 
+    \emph{Proof.} To prove that $(\Sigma^*,\le)$ is a weak partial order, we must prove it is reflexive, antisymmetric, and transitive.\\
+    \\
+    \emph{Reflexive:} $\ForallApp u \in \Sigma^* \mdot \exists x,y \in \Sigma^* \mdot u \le u$
+
+    \begin{flalign*}
+      &\mname{For all } u \in \Sigma^*:\\
+      &\phantom{{}=} \exists x,y \in \Sigma^* \mdot u \le u\\
+      &= \exists x,y \in \Sigma^* \mdot u \le xuy  & \pnote{def. of a subword}\\
+      &= u \le xuy  & \pnote{$\exists-introduction$; x,y = x,y}\\
+      &= true & \pnote{def. of a subword}\\
+    \end{flalign*}
+
+    So reflexivity of $(\Sigma^*,\le)$ holds.\\
+
+
+    \emph{Antisymmetric:} $\ForallApp u, v \in \Sigma^* \mdot \exists x,y \in \Sigma^* \mdot u \le v \land v \le u \implies u = v$
+
+    \begin{flalign*}
+      &\mname{For all } u, v \in \Sigma^*:\\
+      &\phantom{{}=} \exists x,y \in \Sigma^* \mdot u \le v \land v \le u \implies u = v\\
+      &= \exists x,y \in \Sigma^* \mdot u \le xuy \land xuy \le u \implies u = xuy & \pnote{def. of a subword; v=xuy}\\
+      &= u \le \epsilon u \epsilon \land \epsilon u\epsilon \le u \implies u = \epsilon u\epsilon  & \pnote{$\exists-introduction$; x,y = $\epsilon,\epsilon$}\\
+      &= u \le u \land u \le u \implies u=u & \pnote{empty word}\\
+      &= true \land true \implies true & \pnote{def. of a subword}\\
+      &= true\\
+    \end{flalign*}
+
+    So antisymmetry of $(\Sigma^*,\le)$ holds.\\
+
+    \emph{Transitive:} $\ForallApp u, v, w \in \Sigma^* \mdot \exists a, b, c, d \in \Sigma^* \mdot u \le v \land v \le w \implies u = w$
+
+    \begin{flalign*}
+      &\mname{For all } u, v, w \in \Sigma^*:\\
+      &\phantom{{}=} \exists a,b,c,d \in \Sigma^* \mdot u \le v \land v \le w \implies u \le w\\
+      &= \exists a,b,c,d \in \Sigma^* \mdot u \le v \land v \le avb \implies u \le avb & \pnote{def. of a subword; w=avb}\\
+      &= \exists a,b,c,d \in \Sigma^* \mdot u \le cud \land cud \le acudb \implies u \le acudb & \pnote{def. of a subword; v=cud}\\
+      &= u \le cud \land cud \le acudb \implies u \le acudb  & \pnote{$\exists-introduction$; a,b,c,d = a,b,c,d}\\
+      &= true \land true \implies true & \pnote{def. of a subword}\\
+      &= true\\
+    \end{flalign*}
+
+    So transitivity of $(\Sigma^*,\le)$ holds.\\
+  
+
+    Therefore, $(\Sigma^*,\le)$ is a weak partial order.\\
+
     \item Prove that $(\Sigma^*,\le)$ is not a weak total order.
+
+    \emph{Proof.} To prove that $(\Sigma^*,\le)$ is not a weak total order, we must prove it is not total.\\
+    \\
+    \emph{Total:} $\ForallApp u \in \Sigma^* \mdot \exists v \in \Sigma^* \mdot u \le v \lor v \le u$
+
+    \begin{flalign*}
+      &\mname{For all } u \in \Sigma^*:\\
+      &\phantom{{}=} \exists v \in \Sigma^* \mdot u \le v \lor v \le u\\
+      &= u \le abc \lor abc \le u & \pnote{$\exists-introduction$; v=abc}\\
+      &= false \lor false  & \pnote{def. of a subword}\\
+      &= false\\
+    \end{flalign*}
+
+    So totality of $(\Sigma^*,\le)$ does not hold by proof by contradiction. Therefore, $(\Sigma^*,\le)$ is not a weak total order.\\
+
 
     \item Does $(\Sigma^*,\le)$ have a minimum element?  Justify your
       answer.
 
+    A minimum element means that element is a subset of every other element in the set. $\epsilon$ is the minimum element, assuming that since $\epsilon$ denotes an empty word, $ab$, $ab\epsilon$, $\epsilon ab$, and $a\epsilon b$ are all equal words. Therefore, every word in $\Sigma^*$ contains an empty would, or $\epsilon$, which is why it is the minimum element.\\
+
     \item Does $(\Sigma^*,\le)$ have a maximum element?  Justify your
       answer.
+
+    No, it does not have a maximum element. This is because the set of words $\Sigma^*$ is infinite. Since there is no limit on the length of the words, there are infinite combinations of words, meaning an infinite number of words in $\Sigma^*$. A maximum element means that all the other elements in the set are a subset of that element. Since the set is infinite, there cannot be a maximum element that contains all other elements. There cannot be an infinite element that contains infinite elements.\\
 
   \ee
 
@@ -168,23 +236,40 @@ the language $\set{ua \mid u \in \Sigma^*}$.
     alphabet.  Construct formulas that specify the following languages
     over $\Sigma$.
 
+  \textbf{Aamina Hussain, hussaa54, February 14, 2021}\\
+  \\
+  Additional predicates:
+  \begin{itemize}
+    \item $\mname{between}(x,y) = z$ where $x, y, z \in \Sigma^*$ states that there is a word $z$ between the words $x$ and $y$. The word $z$ begins immediately after the end of the word $x$, and ends right before the beginning of the word $y$. For example, $\mname{between}(ab,cd) = xyz$ would be describing $abxyzcd$.
+    \item $\mname{length}(x) = n$ where $x \in \Sigma^*$ and $n \in \mathbb{N}$ states the length of a word. For example, $\mname{length}(abc)=3$ would be true.
+    \item The following is assuming the first position of the word is 1.
+  \end{itemize}
+
   \be
 
-    \item $\set{awa \mid w \in \Sigma^*}$.
+    \item $\set{awa \mid w \in \Sigma^*}$.\\
+    $\ForallApp x \mdot a(1) \land \mname{last}(x) \rightarrow a(x)$
 
-    \item $\set{dwd \mid d \in \Sigma \text{ and } w \in \Sigma^*}$.
+    \item $\set{dwd \mid d \in \Sigma \text{ and } w \in \Sigma^*}$.\\
+    $\ForallApp x \mdot (a(1) \land \mname{last}(x) \rightarrow a(x)) \lor (b(1) \land \mname{last}(x) \rightarrow b(x)) \lor (c(1) \land \mname{last}(x) \rightarrow c(x))$
 
-    \item $\set{uaav \mid u, v \in \Sigma^*}$.
+    \item $\set{uaav \mid u, v \in \Sigma^*}$.\\
+    $\ForallApp u, v \in \Sigma^* \mdot \mname{between}(u, v) = aa$
     
-    \item $\set{uavbw \mid u,v,w \in \Sigma^*}$.
+    \item $\set{uavbw \mid u,v,w \in \Sigma^*}$.\\
+    $\ForallApp u, v, w \in \Sigma^* \mdot \mname{between}(u, v) = a \land \mname{between}(v, w) = b$
 
-    \item $\Sigma^*$.
+    \item $\Sigma^*$.\\
+    $\ForallApp w \in \Sigma^* \mdot w$
 
-    \item $\Sigma^* \setminus \set{\epsilon}$.
+    \item $\Sigma^* \setminus \set{\epsilon}$.\\
+    $\ForallApp w \in \Sigma^* \mdot \lnot (\mname{length}(w)=1 \land \epsilon(1))$
 
-    \item $\set{\epsilon}$.
+    \item $\set{\epsilon}$.\\
+    $\ForallApp w \in \Sigma^* \mdot \mname{length}(w)=1 \land \epsilon(1)$
 
-    \item $\emptyset$.
+    \item $\emptyset$.\\
+    $\ForallApp w \in \Sigma^* \mdot \lnot w$
 
   \ee
 
