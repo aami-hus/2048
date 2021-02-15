@@ -253,13 +253,13 @@ the language $\set{ua \mid u \in \Sigma^*}$.
     $\ForallApp x \mdot a(1) \land \mname{last}(x) \rightarrow a(x)$
 
     \item $\set{dwd \mid d \in \Sigma \text{ and } w \in \Sigma^*}$.\\
-    $\ForallApp x \mdot (a(1) \land \mname{last}(x) \rightarrow a(x)) \lor (b(1) \land \mname{last}(x) \rightarrow b(x)) \lor (c(1) \land \mname{last}(x) \rightarrow c(x))$
+    $\ForallApp x \mdot (a(1) \lor b(1) \lor c(1)) \land (\mname{last}(x) \rightarrow a(x)) \lor \mname{last}(x) \rightarrow b(x)) \lor \mname{last}(x) \rightarrow c(x))$
 
     \item $\set{uaav \mid u, v \in \Sigma^*}$.\\
-    $\ForallApp u, v \in \Sigma^* \mdot \mname{between}(u, v) = aa \land \mname{suc}(v)=\emptyset \land \mname{pred}(u)=\emptyset$
+    $\ForallApp u, v \in \Sigma^* \mdot \mname{between}(u, v) = aa \land \mname{suc}(v)=\epsilon \land \mname{pred}(u)=\epsilon$
     
     \item $\set{uavbw \mid u,v,w \in \Sigma^*}$.\\
-    $\ForallApp u, v, w \in \Sigma^* \mdot \mname{between}(u, v) = a \land \mname{between}(v, w) = b \land \mname{suc}(w)=\emptyset \land \mname{pred}(u)=\emptyset$
+    $\ForallApp u, v, w \in \Sigma^* \mdot \mname{between}(u, v) = a \land \mname{between}(v, w) = b \land \mname{suc}(w)=\epsilon \land \mname{pred}(u)=\epsilon$
 
     \item $\Sigma^*$.\\
     $\ForallApp w \in \Sigma^* \mdot w$
