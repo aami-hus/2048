@@ -6,13 +6,13 @@ from Shape import Shape
 
 class CircleT:
 
-	def __init__(self, xs, ys, rs, ms):
-		if not(rs > 0 and ms > 0):
+	def __init__(self, x, y, r, m):
+		if not(r > 0 and m > 0):
 			raise ValueError
-		self.x = xs
-		self.y = ys
-		self.r = rs
-		self.m = ms
+		self.x = x
+		self.y = y
+		self.r = r
+		self.m = m
 		
 	def cm_x(self):
 		return self.x
