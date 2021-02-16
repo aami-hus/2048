@@ -4,24 +4,25 @@
 #  @date
 from Shape import Shape
 
+
 class CircleT:
 
-	def __init__(self, x, y, r, m):
-		if not(r > 0 and m > 0):
-			raise ValueError
-		self.x = x
-		self.y = y
-		self.r = r
-		self.m = m
-		
-	def cm_x(self):
-		return self.x
+    def __init__(self, x, y, r, m):
+        if not(r > 0 and m > 0):
+            raise ValueError
+        self.x = x
+        self.y = y
+        self.r = r
+        self.m = m
 
-	def cm_y(self):
-		return self.y
+    def cm_x(self):
+        return self.x
 
-	def mass(self):
-		return self.m
+    def cm_y(self):
+        return self.y
 
-	def m_inert(self):
-		return (self.m*(self.r**2))/2	
+    def mass(self):
+        return self.m
+
+    def m_inert(self):
+        return (self.m * (self.r**2)) / 2
