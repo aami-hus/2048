@@ -5,7 +5,6 @@
 #  @details
 
 from scipy.integrate import odeint
-from Shape import Shape
 
 
 class Scene:
