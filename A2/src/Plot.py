@@ -13,7 +13,7 @@ def plot(w, t):
 	y = [w[i][1] for i in range(len(w))]
 	fig, axs = plt.subplots(3)
 	fig.suptitle('Motion Simulation')
-	axs[0].plot(x, t)
-	axs[1].plot(y, t)
-	axs[2].plot(y, x)
+	axs[0].plot(t, x)
+	axs[1].plot(t, y)
+	axs[2].plot(x, y)
 	plt.show()
