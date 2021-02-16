@@ -38,7 +38,8 @@ class Scene:
 
 	def sim(self, t_final, nsteps):
 		t = [i*t_final/(nsteps-1) for i in range(nsteps)]
-		return t, odeint(__ode(), [self.s.cm_x(), self.s.cm_y(), self.vx, self.vy], t)
+		def __ode(w, t):
+			return [w[2], w[3], self.Fx(t)/self.s.mass(), self.Fy(t)/self.s.mass()]
+		return t, odeint(__ode, [self.s.cm_x(), self.s.cm_y(), self.vx, self.vy], t)
 
-	def __ode(w, t):
-		return [w[2], w[3], self.Fx(t)/self.s.mass, self.Fy(t)/self.s.mass]
+	

@@ -16,3 +16,4 @@ def plot(w, t):
 	axs[0].plot(x, t)
 	axs[1].plot(y, t)
 	axs[2].plot(y, x)
+	plt.show()
