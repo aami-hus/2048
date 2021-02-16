@@ -6,7 +6,7 @@ DOXY = doxygen
 DOCFLAGS = 
 DOXYCFG = doxConfig
 
-SRC = src/test_driver.py
+SRC = src
 SRCEXPT = src/test_expt.py
 
 RMDIR = rm -rf
