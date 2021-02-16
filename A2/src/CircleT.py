@@ -5,7 +5,7 @@
 from Shape import Shape
 
 
-class CircleT:
+class CircleT(Shape):
 
     def __init__(self, x, y, r, m):
         if not(r > 0 and m > 0):

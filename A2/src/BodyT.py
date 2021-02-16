@@ -7,7 +7,7 @@ from Shape import Shape
 from functools import reduce
 
 
-class BodyT:
+class BodyT(Shape):
 
     def __init__(self, x, y, m):
         if not(len(x) == len(y) == len(m)):

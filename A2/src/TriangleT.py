@@ -6,7 +6,7 @@
 from Shape import Shape
 
 
-class TriangleT:
+class TriangleT(Shape):
 
     def __init__(self, x, y, s, m):
         if not(s > 0 and m > 0):
