@@ -1,12 +1,15 @@
-## @file
-#  @author
-#  @brief
-#  @date
-#  @details
+## @file Plot.py
+#  @author Aamina Hussain
+#  @brief contains a method that plots graphs
+#  @date 02/16/2021
 
 import matplotlib.pyplot as plt
 
 
+## @brief plots three graphs that describe the motion
+#  of a body
+#  @param w is a 2-dimensional sequence of real numbers
+#  @param t is a sequence of real numbers
 def plot(w, t):
     if not(len(w) == len(t)):
         return ValueError
