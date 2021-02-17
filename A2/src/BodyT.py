@@ -1,13 +1,15 @@
 ## @file BodyT.py
 #  @author Aamina Hussain
-#  @brief Contains the type BodyT to represent bodies
+#  @brief Contains the type BodyT to represent bodies,
+#  or a sequence of masses in space
 #  @date 02/16/2021
 
 from Shape import Shape
 from functools import reduce
 
 
-## @brief BodyT represents bodies
+## @brief BodyT represents bodies, which are a sequence
+#  of masses in space
 
 class BodyT(Shape):
 
