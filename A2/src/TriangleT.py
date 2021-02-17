@@ -22,7 +22,7 @@ class TriangleT(Shape):
     #  than zero
     def __init__(self, x, y, s, m):
         if not(s > 0 and m > 0):
-            return ValueError
+            raise ValueError
         self.x = x
         self.y = y
         self.s = s

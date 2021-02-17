@@ -21,9 +21,9 @@ class BodyT(Shape):
     #  than zero
     def __init__(self, x, y, m):
         if not(len(x) == len(y) == len(m)):
-            return ValueError
+            raise ValueError
         if not(reduce(lambda x, y: x > 0 and y > 0, m, True)):
-            return ValueError
+            raise ValueError
         self.cmx = sum([x[i] * m[i] for i in range(len(m))]) / sum(m)
         self.cmy = sum([y[i] * m[i] for i in range(len(m))]) / sum(m)
         self.m = sum(m)
