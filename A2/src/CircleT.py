@@ -29,21 +29,24 @@ class CircleT(Shape):
         self.m = m
 
     ## @brief getter for circle's centre of mass x-component
-    #  @return the value of circle's centre of mass x-component
+    #  @return a float representing the circle's centre of
+    #  mass x-component
     def cm_x(self):
         return self.x
 
     ## @brief getter for circle's centre of mass y-component
-    #  @return the value of circle's centre of mass y-component
+    #  @return a float representing the circle's centre of
+    #  mass y-component
     def cm_y(self):
         return self.y
 
     ## @brief getter for circle's mass
-    #  @return the value of circle's mass
+    #  @return a float representing the circle's mass
     def mass(self):
         return self.m
 
     ## @brief getter for circle's moment of inertia
-    #  @return the value of circle's moment of inertia
+    #  @return a float representing the circle's moment of
+    #  inertia
     def m_inert(self):
         return (self.m * (self.r**2)) / 2

@@ -7,7 +7,7 @@ from Shape import Shape
 from functools import reduce
 
 
-## @brief TriangleT represents bodies
+## @brief BodyT represents bodies
 
 class BodyT(Shape):
 
@@ -30,21 +30,24 @@ class BodyT(Shape):
         self.moment = sum([m[i] * (x[i]**2 + y[i]**2) for i in range(len(m))])
 
     ## @brief getter for body's centre of mass x-component
-    #  @return the value of body's centre of mass x-component
+    #  @return a float representing the body's centre of
+    #  mass x-component
     def cm_x(self):
         return self.cmx
 
     ## @brief getter for body's centre of mass y-component
-    #  @return the value of body's centre of mass y-component
+    #  @return a float representing the body's centre of
+    #  mass y-component
     def cm_y(self):
         return self.cmy
 
     ## @brief getter for body's mass
-    #  @return the value of body's mass
+    #  @return a float representing the body's mass
     def mass(self):
         return self.m
 
     ## @brief getter for body's moment of inertia
-    #  @return the value of body's moment of inertia
+    #  @return a float representing the body's moment of
+    #  inertia
     def m_inert(self):
         return self.moment

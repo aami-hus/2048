@@ -29,21 +29,24 @@ class TriangleT(Shape):
         self.m = m
 
     ## @brief getter for triangles's centre of mass x-component
-    #  @return the value of triangles's centre of mass x-component
+    #  @return a float representing the triangle's centre of
+    #  mass x-component
     def cm_x(self):
         return self.x
 
     ## @brief getter for triangle's centre of mass y-component
-    #  @return the value of triangle's centre of mass y-component
+    #  @return a float representing the triangle's centre of
+    #  mass y-component
     def cm_y(self):
         return self.y
 
     ## @brief getter for triangle's mass
-    #  @return the value of triangle's mass
+    #  @return a float representing the triangle's mass
     def mass(self):
         return self.m
 
     ## @brief getter for triangle's moment of inertia
-    #  @return the value of triangle's moment of inertia
+    #  @return a float representing the triangle's moment of
+    #  inertia
     def m_inert(self):
         return (self.m * (self.s**2)) / 12
