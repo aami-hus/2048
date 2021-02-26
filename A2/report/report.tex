@@ -50,29 +50,37 @@ degrees of freedom, and we were able to choose the most efficient way to impleme
 
 \item Yes, getters and setters should be unit tested. Unit testing getters is a good way to ensure that the values have been assigned to the correct corresponding state variable. Unit testing is necessary for the setters as well, for similar reasons. It is a good way to ensure that the state variable is actually being changed. Issues with setters and getters could result in issues with the rest of the code, since setters and getters are usually used when implementing other methods. It is important for every executable part of the code to be tested.
 
-\item If I did not have to perform automated tests, then I would test the getters and setters by defining the functions in the test case. For example, if I 
+\item I would test the getters by creating a Scene object. Then I would print(object.get\_unbal\_forces()) and see if they return the same functions I set the unbalanced forces as. To test the setters, I would first check what the original function the unbalanced forces are for that object by print(object.get\_unbal\_forces()). Then I would set the forces to different functions (any other function) using object.set\_unbal\_forces(fxnA, fxnB). Then I would print(object.get\_unbal\_forces()) again to check if the function changed. This is what I would do if I did not have to perform an automated test.
 
 \item Since matplotlib can generate and save a file for the plot you make, in order to perform an automated test, I could compare the two files. This can be done by reading the rows of pixels for each file, and seeing if they are equal. Two pixels are equal if they are the same color. If all the pixels for the two files are the same, then the two graphs are the same, and the test passes. If they are not the same, then the test fails.
 
-\item Routine name: close_enough
+\item Routine name - close\_enough\\
+In - x\_calc : seq of $\mathbb{R}$, x\_true : seq of $\mathbb{R}$\\
+Out - $\mathbb{B}$\\
+\\
+close\_enough(x\_calc, x\_true):
+\begin{itemize}
+	\item $out :=$ very\_close(subtract(x\_calc, x\_true), x\_true)
+	\item exception: $\lnot(|x\_calc| = |x\_true|) \Rightarrow$ ValueError
+\end{itemize}
+Local Functions
+\\
+\\
+subtract : seq of $\mathbb{R} \times$ seq of $\mathbb{R} \Rightarrow$ seq of $\mathbb{R}$\\
+subtract(x, y) $\equiv [i : \mathbb{N}|i \in [0..|x|-1] : x_i-y_i]$
+\\
+\\
+abs : seq of $\mathbb{R} \Rightarrow$ seq of $\mathbb{R}$\\
+abs(x) $\equiv [i : \mathbb{N}|i \in [0..|x|-1] : |x_i|]$
+\\
+\\
+max: seq of $\mathbb{R} \Rightarrow \mathbb{R}$\\
+max(x) $\equiv$ the largest value in the sequence
+\\
+\\
+very\_close : seq of $\mathbb{R} \times$ seq of $\mathbb{R} \Rightarrow \mathbb{B}$\\
+very\_close(x, y) $\equiv max(abs(x))/max(abs(y)) < \epsilon$
 
-
-Close_enough(x_calc, y_true):
-	- Out := very_close(x_calc, y_true)
-	- Exception := not( |x_calc| = |y_true| ) => ValueError
-
-Local function
-Subtract : seq of R x seq of R --> seq of R
-Subtract(x, y) \== [i : N|i in [0 .. |x| - 1] : |xi - yi|]
-
-abs : seq of R --> seq of R
-abs(x) \== [i : N|i in [0 .. |x| - 1] : |xi|]
-
-max : seq of R --> R
-max(x) \== the largest value in the sequence
-
-Very_close : seq or R x seq of R --> Boolean
-Very_close(x, y) \== max(abs(x))/max(abs(y)) < epsilon
 
 \item No, there should not be exceptions for negative coordinates. There were exceptions for shape dimensions and mass because you cannot have a negative side length of a shape for example. Coordinates, however, are arbitrary positions in space, and they are used to see the position of something with reference to the positions of everything else on the coordinate grid. For example, if shape A was at (0, 0) and shape B was at (0, -5), then shape B would be 5 units below shape A. This shows that the positions are relative, and negative coordinates are not incorrect.
 
