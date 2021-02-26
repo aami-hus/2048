@@ -15,7 +15,14 @@ Subtract(x, y) \== [i : N|i in [0 .. |x| - 1] : |xi - yi\|]
 
 Very_close : seq or R x seq of R --> Boolean
 Very_close(x, y) \== 
-
+\begin{table}[]
+\begin{tabular}{lllll}
+Routine name  & In                                                                                         & Out                         & Exceptions &  \\
+close\_enough & x\_calc : seq of \textbackslash{}mathbb\{R\}, x\_true : seq of \textbackslash{}mathbb\{R\} & \textbackslash{}mathbb\{B\} &            &  \\
+              &                                                                                            &                             &            &  \\
+              &                                                                                            &                             &            & 
+\end{tabular}
+\end{table}
 
 E) No, there should not be exceptions for negative coordinates. There were exceptions for shape dimensions and mass because you cannot have a negative side length of a shape for example. Coordinates, however, are arbitrary positions in space, and they are used to see the position of something with reference to the positions of everything else on the coordinate grid. For example, if shape1 was at (0, 0) and shape2 was at (0, -5), then shape2 would be 5 units below shape1. This shows that the positions are relative, and negative coordinates are not incorrect.
 
