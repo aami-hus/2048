@@ -267,6 +267,7 @@ Please make sure your diagram is legible.
    \ee
 	
    \textbf{Aamina Hussain, hussaa54, February 28, 2021}\\
+   
    \emph{Proof.} Let $L(B) = \{w \in \{0, 1\}^* | w$ ends with an odd number of $1s\}$. Then I need to show that $w \in \Sigma^*$ is $w \in L(B)$ if it ends in an odd number of 1s, or $w \notin L(B)$ if it does not end in an odd number of 1s.\\
    
    $P_1 \equiv$ if $\delta^*(q_0, w) = q_0 \implies w = \epsilon \lor w$ ends in a 0 $(w \notin L(B))$\\
@@ -289,23 +290,25 @@ Please make sure your diagram is legible.
       &\phantom{{}=} \delta(q_0, w) & \pnote{LHS of $P_2$}\\
       &= \delta(q_0, \epsilon) \\
       &= q_0       & \pnote{def. of $\delta^*$}\\
+      &\equiv False       & \pnote{$q_0 \neq q_1$}\\
     \end{align*}
-    Since the RHS of the implication is false (i.e., $\epsilon$ does not end with an odd number of 1s), and $q_0 \neq q_1$, we can conclude $P_2$ is true and therefore holds for $w = \epsilon$.
+    Since the LHS of the implication is false (i.e., $\epsilon$ does not end with an odd number of 1s; $False \implies x \equiv True$), and $q_0 \neq q_1$, we can conclude $P_2$ is true and therefore holds for $w = \epsilon$.
 
     \emph{Base Case ($P_3$)} $|w| = n = 0$, $w = \epsilon$
     \begin{align*}
       &\phantom{{}=} \delta(q_0, w) & \pnote{LHS of $P_3$}\\
       &= \delta(q_0, \epsilon) \\
       &= q_0       & \pnote{def. of $\delta^*$}\\
+      &\equiv False       & \pnote{$q_0 \neq q_2$}\\
     \end{align*}
-    Since the RHS of the implication is false (i.e., $\epsilon$ does not end with an even number of 1s), and $q_0 \neq q_2$, we can conclude $P_3$ is true and therefore holds for $w = \epsilon$.
+    Since the LHS of the implication is false (i.e., $\epsilon$ does not end with an even number of 1s; $False \implies x \equiv True$), and $q_0 \neq q_2$, we can conclude $P_3$ is true and therefore holds for $w = \epsilon$.
 
     \emph{Induction Step}: Let $n = |w| > 0$. Let $w = xi$, where $x \in \Sigma^*$ and $i \in \Sigma$. Let $n = |x|$. Assume $P(n)$ holds. $|w| = n+1$, so prove $P(n+1)$ holds.
 
     \emph{Induction Step ($P_1$)}:
     \begin{align*}
       &\phantom{{}=} \delta^*(q_0, w) & \pnote{LHS of $P_1$}\\
-      &= \delta^*(q_0, xi) \\
+      &= \delta^*(q_0, xi) & \pnote{let $w = xi$}\\
       &= \delta(\delta^*(q_0, x), i)      & \pnote{def. of $\delta^*$}\\
       &= q_0       & \pnote{def. of $\delta^*$; RHS}\\
     \end{align*}
@@ -314,14 +317,28 @@ Please make sure your diagram is legible.
     \emph{Induction Step ($P_2$)}:
     \begin{align*}
       &\phantom{{}=} \delta^*(q_0, w) & \pnote{LHS of $P_2$}\\
-      &= \delta^*(q_0, xi) \\
+      &= \delta^*(q_0, xi) & \pnote{let $w = xi$}\\
       &= \delta(\delta^*(q_0, x), i)      & \pnote{def. of $\delta^*$}\\
       &= q_1       & \pnote{def. of $\delta^*$; RHS}\\
     \end{align*}
     We know from DFA B that we have $\delta(q_0, 1) = q_1$ and $\delta(q_2, 1) = q_1$. There are two transitions that take us to $q_1$ using a 1. Therefore, $i = 1$ in both cases.\\
-    \emph{Case 1}: 
-     
-    For all $\delta(q, 0)$ for $q \in Q$ in B. (According to DFA B, every state transitions to state $q_0$ using the input 0, and no state transitions to $q_0$ using the input 1.) Therefore, $i$ must be equal to 0 ($i=0$). This means that our string $w = xi = x0$ ends in a zero. Therefore, $P_1$ holds.
+    \emph{Case 1} $\delta(q_0, 1) = q_1$: $i=1$ and $\delta^*(q_0, x) = q_0$. We can use our induction hypothesis, where $P(n+1)$ says that $P_1$ holds. Then $x = y0$ where $y \in \Sigma^*$. $w = xi = y01$, which ends in a single 1, which is an odd number of 1s.\\
+    \emph{Case 2} $\delta(q_2, 1) = q_1$: $i=1$ and $\delta^*(q_0, x) = q_2$. We can use our induction hypothesis, where $P(n+1)$ says that $P_3$ holds. Then $x = y11$ where $y \in \Sigma^*$. $w = xi = y111$, which ends in three 1s, which is an odd number of 1s.
+
+    Therefore, $P_2$ holds.
+
+    \emph{Induction Step ($P_3$)}:
+    \begin{align*}
+      &\phantom{{}=} \delta^*(q_0, w) & \pnote{LHS of $P_3$}\\
+      &= \delta^*(q_0, xi) & \pnote{let $w = xi$}\\
+      &= \delta(\delta^*(q_0, x), i)      & \pnote{def. of $\delta^*$}\\
+      &= q_2       & \pnote{def. of $\delta^*$; RHS}\\
+    \end{align*}
+    We know from DFA B that we have $\delta(q_1, 1) = q_2$, which means that $i = 1$. $\delta^*(q_0, x) = q_1$. We can use our induction hypothesis, where $P(n+1)$ says that $P_2$ holds. Then $x = y1$ where $y \in \Sigma^*$. $w = xi = y11$, which ends in a two 1s, which is an even number of 1s.
+
+    Therefore, $P_3$ holds.
+
+    $P_1, P_2$, and $P_3$ all hold. Therefore, $P(n)$ holds for all $n$ by weak induction.
 
 
 \ee
