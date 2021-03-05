@@ -7,7 +7,6 @@ class SetOfInt:
 
 	def __init__(self, x_s):
 		self.s = set(x_s)
-		print(self.s)
 
 	def is_member(self, x):
 		if x in self.s:
