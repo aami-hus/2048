@@ -469,10 +469,10 @@ and minimality.  Please be specific in your answer.
 \wss{Put your answer for each quality below.}
 
 \begin{itemize}
-\item \textbf{consistency}:
-\item \textbf{essentiality}:
-\item \textbf{generality}:
-\item \textbf{minimality}:
+\item \textbf{consistency}: The interface is consistent. The naming convention is all lowercase with underscores between words if there are multiple words. The parameters are also consistent. Whenever the input is of type SetofInt, then the input parameter is 't'.
+\item \textbf{essentiality}: The interface was not essential. This is because you can implement some methods using a combination of the other methods. empty() is not needed because you can check if it's empty by using size(). If the size is zero then you know it is empty.
+\item \textbf{generality}: The interface is not general, in the sense that it cannot be used in other contexts. For example, the interface has specified everything to be of type integer. This means it cannot be used for sets of other types, such as strings, floats, other objects, etc.
+\item \textbf{minimality}: The interface was minimal, meaning every access program only did one thing. This is important because we want to design for likely changes. If every method only does one thing, it can be easier to change the individual method if needed.
 \end{itemize}
 
 \end{minipage}
@@ -503,10 +503,10 @@ characterize the changes; you don't actually have to make them.)
 \wss{Put your answer below.}
 
 \begin{enumerate}[a.]
-\item
-\item
-\item
-\item (BONUS)
+\item To make the specification generic, I would specify a type T instead of type integer, where type T is any type you choose. This includes integers, strings, etc. 
+\item To make the Python implementation generic for type T, I would not need to make any changes. This is because Python is a dynamically typed language and uses Duck typing. We do not specify the type of inputs or outputs for each function in Python, unlike in Java where we do specify input and output types and are forced to strictly adhere to them.
+\item A rational operator that needs to be defined is an equals operator.
+\item (BONUS) I would specify a new routine \_\_eq\_\_ which takes in a parameter which is another object of the class. Then I would define what it means for the two objects to be equal. It would output a boolean value.
 \end{enumerate}
 
 \end{minipage}
