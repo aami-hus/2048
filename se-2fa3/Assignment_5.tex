@@ -9,6 +9,7 @@
 \usepackage{url}
 \usepackage{color}
 \usepackage{tikz}
+\usepackage{diagbox}
 \usetikzlibrary{automata,positioning,arrows}
 
 \setlength {\topmargin} {-.15in}
@@ -199,12 +200,90 @@
         \bigskip
 
         \noindent
-        \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+        \textbf{Aamina Hussain, hussaa54, March 7, 2021}
 
         \medskip
 
-        \noindent
-        \textcolor{blue}{\textbf{Put your solution here.}}
+        \be
+
+        \item The NFA transition diagram is below.
+
+        \begin{center}
+		\begin{tikzpicture}[]
+		    \node[initial,thick,state] at (-5.6875,0.9625) (06a97fcb) {$q_{1}$};
+		    \node[thick,state] at (-1.1375,0.9875) (5490009c) {$q_{2}$};
+		    \node[thick,accepting,state] at (3.1875,0.9625) (1186a718) {$q_{3}$};
+		    \path[->, thick, >=stealth]
+		    (06a97fcb) edge [below,in = -180, out = 0] node {$c$} (5490009c)
+		    (06a97fcb) edge [loop,min distance = 1.25cm,above,in = 121, out = 59] node {$a,b,c$} (06a97fcb)
+		    (5490009c) edge [below,in = 180, out = 0] node {$c$} (1186a718)
+		    (1186a718) edge [loop,min distance = 1.25cm,above,in = 121, out = 59] node {$a,b,c$} (1186a718)
+		    ;
+		\end{tikzpicture}
+		\end{center}
+
+        \item The equivalent DFA of the above NFA is below.
+
+        \begin{center}
+		\begin{tikzpicture}[]
+		    \node[initial,thick,state] at (-3.3875,1.8625) (12778f70) {$\{q_{1}\}$};
+		    \node[thick,state] at (1.8125,1.8625) (eeba0637) {$\{q_{1}, q_{2}\}$};
+		    \node[thick,accepting,state] at (-3.4625,-1.6875) (3c7dea05) {$\{q_{1}, q_{3}\}$};
+		    \node[thick,accepting,state] at (1.8125,-1.6875) (4420802f) {$\{q_{1}, q_{2}, q_{3}\}$};
+		    \path[->, thick, >=stealth]
+		    (12778f70) edge [loop,min distance = 1.25cm,above,in = 121, out = 59] node {$a,b$} (12778f70)
+		    (12778f70) edge [above,in = 179, out = 1] node {$c$} (eeba0637)
+		    (eeba0637) edge [below,in = -18, out = -162] node {$a,b$} (12778f70)
+		    (eeba0637) edge [left,in = 90, out = -90] node {$c$} (4420802f)
+		    (3c7dea05) edge [below,in = 180, out = 0] node {$c$} (4420802f)
+		    (3c7dea05) edge [loop,min distance = 1.25cm,above,in = 121, out = 59] node {$a,b$} (3c7dea05)
+		    (4420802f) edge [loop,min distance = 1.33cm,below,in = -56, out = -120] node {$c$} (4420802f)
+		    (4420802f) edge [above,in = 15, out = 164] node {$a,b$} (3c7dea05)
+		    ;
+		\end{tikzpicture}
+		\end{center}
+		
+		Transition Table:
+
+		\begin{table}
+		\centering
+		\begin{tabular}{cc|c|c|c}
+		                         & \diagbox{{}$P(Q)$}{{}$\Sigma$} & a            & b            & c                  \\ 
+		\cline{2-5}
+		                         & $\{\emptyset\}$                      & $\{\emptyset\}$  & $\{\emptyset\}$  & $\{\emptyset\}$        \\
+		start $\rightarrow$      & $\{q_1\}$                            & $\{q_1\}$      & $\{q_1\}$      & $\{q_1, q_2\}$       \\
+		                         & $\{q_2\}$                            & $\{\emptyset\}$  & $\{\emptyset\}$  & $\{q_3\}$            \\
+		final $\rightarrow$ & $\{q_3\}$                            & $\{q_3\}$      & $\{q_3\}$      & $\{q_3\}$            \\
+		                         & $\{q_1, q_2\}$                       & $\{q_1\}$      & $\{q_1\}$      & $\{q_1, q_2, q_3\}$  \\
+		final $\rightarrow$ & $\{q_1, q_3\}$                       & $\{q_1, q_3\}$ & $\{q_1, q_3\}$ & $\{q_1, q_2, q_3\}$  \\
+		final $\rightarrow$ & $\{q_2, q_3\}$                       & $\{q_3\}$      & $\{q_3\}$      & $\{q_3\}$            \\
+		final $\rightarrow$ & $\{q_1, q_2, q_3\}$                  & $\{q_1, q_3\}$ & $\{q_1, q_3\}$ & $\{q_1, q_2, q_3\}$ 
+		\end{tabular}
+		\end{table}
+		
+		The unreachable states are $\{\emptyset\}$, $\{q_2\}$, $\{q_3\}$, and $\{q_2, q_3\}$.
+
+        \item The DFA in question 2 is not minimal. This is because there are some equivalent states as you can see in the transition table above. States $\{q_1, q_3\}$ and $\{q_1, q_2, q_3\}$ are equivalent. The states they transition to in each case (for input a, b, and c) are the same. Removing the state $\{q_1, q_3\}$ would result in the same strings being accepted or rejected. Therefore, the new DFA is equivalent and minimal.
+
+        The equivalent minimal DFA is below.
+
+        \begin{center}
+		\begin{tikzpicture}[]
+		    \node[initial,thick,state] at (-3.3875,1.8625) (e1259b42) {$\{q_{1}\}$};
+		    \node[thick,state] at (0.8375,1.8375) (6783c5c2) {$\{q_{1}, q_{2}\}$};
+		    \node[thick,accepting,state] at (4.9625,1.8625) (546a00cc) {$\{q_{1}, q_{2}, q_{3}\}$};
+		    \path[->, thick, >=stealth]
+		    (e1259b42) edge [loop,min distance = 1.25cm,above,in = 121, out = 59] node {$a,b$} (e1259b42)
+		    (e1259b42) edge [above,in = 179, out = 1] node {$c$} (6783c5c2)
+		    (6783c5c2) edge [below,in = -22, out = -159] node {$a,b$} (e1259b42)
+		    (6783c5c2) edge [below,in = -180, out = 0] node {$c$} (546a00cc)
+		    (546a00cc) edge [loop,min distance = 1.28cm,above,in = 122, out = 60] node {$a,b,c$} (546a00cc)
+		    ;
+		\end{tikzpicture}
+		\end{center}
+
+        \ee
+        
 
 \end{document}
 
