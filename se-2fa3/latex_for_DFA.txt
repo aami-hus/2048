@@ -47,6 +47,26 @@ Assignment 5 #2 - DFA (not minimized)
 \end{tikzpicture}
 \end{center}
 
+transition table for set construction
+
+% \usepackage{diagbox}
+
+
+\begin{table}
+\centering
+\begin{tabular}{cc|c|c|c}
+                         & \diagbox{{[}$P(Q)$]}{{[}$\Sigma$]} & a            & b            & c                  \\ 
+\cline{2-5}
+                         & ${\emptyset}$                      & $\emptyset$  & $\emptyset$  & $\emptyset$        \\
+start~$\shortrightarrow$ & ${q_1}$                            & ${q_1}$      & ${q_1}$      & ${q_1, q_2}$       \\
+                         & ${q_2}$                            & $\emptyset$  & $\emptyset$  & ${q_3}$            \\
+final~$\shortrightarrow$ & ${q_3}$                            & ${q_3}$      & ${q_3}$      & ${q_3}$            \\
+                         & ${q_1, q_2}$                       & ${q_1}$      & ${q_1}$      & ${q_1, q_2, q_3}$  \\
+final~$\shortrightarrow$ & ${q_1, q_3}$                       & ${q_1, q_3}$ & ${q_1, q_3}$ & ${q_1, q_2, q_3}$  \\
+final~$\shortrightarrow$ & ${q_2, q_3}$                       & ${q_3}$      & ${q_3}$      & ${q_3}$            \\
+final~$\shortrightarrow$ & ${q_1, q_2, q_3}$                  & ${q_1, q_3}$ & ${q_1, q_3}$ & ${q_1, q_2, q_3}$ 
+\end{tabular}
+\end{table}
 
 
 Assignment 5 #3 - DFA (minimized)
