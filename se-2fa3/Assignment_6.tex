@@ -120,14 +120,56 @@
 	
 	\bigskip
 	
-	\textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+	\textbf{Aamina Hussain, hussaa54, March 14, 2021}
 
-        \medskip
-
-        \noindent
-        \textcolor{blue}{\textbf{Put your solution here.}}
+    \medskip    
 
 \ee
+
+\textbf{\emph{part a)}}\\
+A shorter regular expression $\beta$ that is equal to $\alpha$ is $\beta = 01(10)^*$. The language that the regular expression $\alpha$ describes says that the string can begin with:
+\be
+\item 01 followed by an arbitrary amount of 10s, or
+\item 0110 followed by an arbitrary number of 10s
+\ee
+However, in \#2, 0110 ends with 10, meaning it follows strings described in \#1. 0110 is 01 followed by an arbitrary number of 10s, in this case one 10. 0110 is $01(10)^1$. We can therefore remove the 0110 from $\alpha$ in order to shorten it.
+\begin{align*}
+    &\phantom{{}=} L(\alpha) \\
+    &= L((0110+01)(10)^*) & \pnote{sub. for $\alpha$}\\
+    &= L(0110+01)L((10)^*) & \pnote{definition of L}\\
+    &= (L(0110) \cup L(01))(L(10))^* & \pnote{definition of L}\\
+    &= (\{0110\} \cup \{01\})\{10\}^* & \pnote{definition of L}\\
+    &= \{0110\}\{10\}^* \cup \{01\}\{10\}^* & \pnote{concat. distributes over union}\\
+    &= \{0110\}\{\epsilon, 10, 1010,...\} \cup \{01\}\{\epsilon, 10, 1010,...\} & \pnote{definition of asterate}\\
+    &= \{0110, 011010, 01101010,...\} \cup \{01, 0110, 011010,...\} & \pnote{definition of concatenation}\\
+\end{align*}
+As you can see, the union of the two sets above will result in a set that is equal to the set on the right above. This means that everything in the set on the left is in the set on the right. Therefore, we don't need the set on the left of the union. More specifically, we do not need 0110. Continuing the above calculation below:
+\begin{align*}
+    &= \{01, 0110, 011010,...\} & \pnote{definition of union}\\
+    &= \{01\}\{\epsilon, 10, 1010,...\} & \pnote{definition of concatenation}\\
+    &= \{01\}\{10\}^* & \pnote{definiton of asterate}\\
+    &= L(01)(L(10))^* & \pnote{definition of L}\\
+    &= L(01)L((10)^*) & \pnote{definition of L}\\
+    &= L(01(10)^*) & \pnote{definition of L}\\
+    &= L(\beta) & \pnote{sub. for $\beta$}\\
+\end{align*}
+
+
+\textbf{\emph{part b)}}
+\begin{align*}
+    &\phantom{{}=} (0110+01)(10)^* & \pnote{$\alpha$}\\
+    &= (0110+01\epsilon)(10)^* & \pnote{$\epsilon$ is the identity element for concatenation}\\
+    &= (01(10+\epsilon))(10)^* & \pnote{Distribution of union}\\
+    &= 01((10+\epsilon)(10)^*) & \pnote{Associativity of concatenation}\\
+    &= 01(10(10)^*+\epsilon(10)^*) & \pnote{Distribution of union}\\
+    &= 01(10(10)^*+(10)^*) & \pnote{$\epsilon$ is the identity element for concatenation}\\
+    &= 01(10(10)^*+(10)^*+\epsilon) & \pnote{Additional property of Kleene star (9.a)}\\
+    &= 01(10(10)^*+\epsilon+(10)^*) & \pnote{Commutativity of union}\\
+    &= 01((10)^*+(10)^*) & \pnote{Additional property of Kleene star (9.d)}\\
+    &= 01(10)^* & \pnote{Additional property of Kleene star (9.b); $\alpha$ simplified}\\
+\end{align*}
+
+
 \end{document}
 
 
