@@ -5,15 +5,16 @@ import java.util.*;
 
 public class AttributeT{
 
-	private HashSet<IndicatorT> s;
+	private ArrayList<IndicatorT> s;
 	private String name;
 
-	public AttributeT(String attribName, HashSet<IndicatorT> indicators){
+	public AttributeT(String attribName, IndicatorT[] indicators){
 		this.name = attribName;
-		s = new HashSet<IndicatorT>();
-		Iterator<Integer> i = indicators.iterator();
-		while(i.hasNext()){
-			this.a.add(i.next());
+		s = new ArrayList<IndicatorT>();
+		for(IndicatorT i : indicators){
+			if(!(this.s.contains(i))){
+				this.s.add(i);
+			}
 		}
 	}
 
@@ -21,18 +22,21 @@ public class AttributeT{
 		return name;
 	}
 
-	public HashSet<IndicatorT> getIndicators(){
-		return s;
+	public IndicatorT[] getIndicators(){
+		IndicatorT[] arr = new IndicatorT[this.s.size()];
+		arr = this.s.toArray(arr);
+		return arr;
 	}
 
 	public static void main(String[] args){
-		HashSet<IndicatorT> tester = new HashSet<IndicatorT>();
-		tester.add("math");
-		tester.add("tools");
-		AttributeT tester2 = new AttributeT("yes", tester);
-		System.out.println(tester);
-		System.out.println(tester2.getName());
-		System.out.println(tester2.getIndicators());
+		// ArrayList<IndicatorT> tester = new ArrayList<IndicatorT>();
+		// tester.add(IndicatorT.math);
+		// tester.add(IndicatorT,assumpt);
+		// AttributeT tester2 = new AttributeT("yes", tester);
+		// System.out.println(tester);
+		// System.out.println(tester2);
+		// System.out.println(tester2.getName());
+		// System.out.println(tester2.getIndicators());
 
 
 	}
