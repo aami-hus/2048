@@ -120,10 +120,93 @@ $
 	\item\textbf{[5 points]} $L = \{a^nb^m \mid 1 \le m \le n \}$
 	\item\textbf{[5 points]} $L = \{a^nb^m \mid 1 \le m < n \}$ 
 	\ee
-	\textcolor{blue}{\textbf{Put your name, MacID, and date here.}}\\
-	\textcolor{blue}{\textbf{Put your solution here.}}
-	
+
 	\ee
+	\textbf{Aamina Hussain, hussaa54, March 28, 2021}\\
+	
+	\noindent\textbf{\emph{Part A:}}\\
+	Let $M = (Q, \Sigma, \Gamma, \delta, s, \bot, F)$ represent the PDA defined below where:\\
+	$Q = \set{q_0, q_1, q_2}$\\
+	$\Sigma = \set{a, b}$\\
+	$\Gamma = \set{\bot, A}$\\
+	$s = q_0$\\
+	$F = \set{q_2}$
+
+	\noindent$\delta$ contains the following transitions:
+	\be
+	\item $((q_0, a, \bot),\ (q_1, A\bot))$
+	\item $((q_1, a, A),\ (q_1, AA))$
+	\item $((q_1, b, A),\ (q_1, \epsilon))$
+	\item $((q_1, b, \bot),\ (q_2, \bot))$
+	\item $((q_1, \epsilon, \bot),\ (q_2, \bot))$
+	\ee
+
+	\begin{center}
+	\includegraphics[scale = 0.5]{partA.JPG}
+	\end{center}
+	
+	\noindent\textbf{\emph{Part B:}}\\
+	Let $M = (Q, \Sigma, \Gamma, \delta, s, \bot, F)$ represent the PDA defined below where:\\
+	$Q = \set{q_0, q_1, q_2}$\\
+	$\Sigma = \set{a, b}$\\
+	$\Gamma = \set{\bot, A}$\\
+	$s = q_0$\\
+	$F = \set{q_2}$
+
+	\noindent$\delta$ contains the following transitions:
+	\be
+	\item $((q_0, a, \bot),\ (q_1, A\bot))$
+	\item $((q_1, a, A),\ (q_1, AA))$
+	\item $((q_1, b, A),\ (q_1, \epsilon))$
+	\item $((q_1, b, \bot),\ (q_2, \bot))$
+	\ee
+
+	\begin{center}
+	\includegraphics[scale = 0.5]{partB.JPG}
+	\end{center}
+
+	\noindent\textbf{\emph{Part C:}}\\
+	Let $M = (Q, \Sigma, \Gamma, \delta, s, \bot, F)$ represent the PDA defined below where:\\
+	$Q = \set{q_0, q_1, q_2}$\\
+	$\Sigma = \set{a, b}$\\
+	$\Gamma = \set{\bot, A}$\\
+	$s = q_0$\\
+	$F = \set{q_2}$
+
+	\noindent$\delta$ contains the following transitions:
+	\be
+	\item $((q_0, a, \bot),\ (q_1, A\bot))$
+	\item $((q_1, a, A),\ (q_1, AA))$
+	\item $((q_1, b, A),\ (q_1, \epsilon))$
+	\item $((q_1, \epsilon, A),\ (q_2, A))$
+	\item $((q_1, \epsilon, \bot),\ (q_2, \bot))$
+	\ee
+
+	\begin{center}
+	\includegraphics[scale = 0.5]{partC.JPG}
+	\end{center}
+
+	\noindent\textbf{\emph{Part D:}}\\
+	Let $M = (Q, \Sigma, \Gamma, \delta, s, \bot, F)$ represent the PDA defined below where:\\
+	$Q = \set{q_0, q_1, q_2}$\\
+	$\Sigma = \set{a, b}$\\
+	$\Gamma = \set{\bot, A}$\\
+	$s = q_0$\\
+	$F = \set{q_2}$
+
+	\noindent$\delta$ contains the following transitions:
+	\be
+	\item $((q_0, a, \bot),\ (q_1, A\bot))$
+	\item $((q_1, a, A),\ (q_1, AA))$
+	\item $((q_1, b, A),\ (q_1, \epsilon))$
+	\item $((q_1, \epsilon, A),\ (q_2, A))$
+	\ee
+	
+	\begin{center}
+	\includegraphics[scale = 0.5]{partD.JPG}
+	\end{center}
+
+	
 	
 \end{document}
 
