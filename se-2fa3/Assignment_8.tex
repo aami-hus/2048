@@ -137,7 +137,7 @@ $
 	\item $((q_0, a, \bot),\ (q_1, A\bot))$
 	\item $((q_1, a, A),\ (q_1, AA))$
 	\item $((q_1, b, A),\ (q_1, \epsilon))$
-	\item $((q_1, b, \bot),\ (q_2, \bot))$
+	\item $((q_1, b, \bot),\ (q_1, \bot))$
 	\item $((q_1, \epsilon, \bot),\ (q_2, \bot))$
 	\ee
 
@@ -147,18 +147,20 @@ $
 	
 	\noindent\textbf{\emph{Part B:}}\\
 	Let $M = (Q, \Sigma, \Gamma, \delta, s, \bot, F)$ represent the PDA defined below where:\\
-	$Q = \set{q_0, q_1, q_2}$\\
+	$Q = \set{q_0, q_1, q_2, q_3}$\\
 	$\Sigma = \set{a, b}$\\
 	$\Gamma = \set{\bot, A}$\\
 	$s = q_0$\\
-	$F = \set{q_2}$
+	$F = \set{q_3}$
 
 	\noindent$\delta$ contains the following transitions:
 	\be
 	\item $((q_0, a, \bot),\ (q_1, A\bot))$
 	\item $((q_1, a, A),\ (q_1, AA))$
 	\item $((q_1, b, A),\ (q_1, \epsilon))$
+	\item $((q_1, b, \bot),\ (q_1, \bot))$
 	\item $((q_1, b, \bot),\ (q_2, \bot))$
+	\item $((q_2, \epsilon, \bot),\ (q_3, \bot))$
 	\ee
 
 	\begin{center}
@@ -167,19 +169,20 @@ $
 
 	\noindent\textbf{\emph{Part C:}}\\
 	Let $M = (Q, \Sigma, \Gamma, \delta, s, \bot, F)$ represent the PDA defined below where:\\
-	$Q = \set{q_0, q_1, q_2}$\\
+	$Q = \set{q_0, q_1, q_2, q_3}$\\
 	$\Sigma = \set{a, b}$\\
 	$\Gamma = \set{\bot, A}$\\
 	$s = q_0$\\
-	$F = \set{q_2}$
+	$F = \set{q_3}$
 
 	\noindent$\delta$ contains the following transitions:
 	\be
 	\item $((q_0, a, \bot),\ (q_1, A\bot))$
 	\item $((q_1, a, A),\ (q_1, AA))$
-	\item $((q_1, b, A),\ (q_1, \epsilon))$
-	\item $((q_1, \epsilon, A),\ (q_2, A))$
-	\item $((q_1, \epsilon, \bot),\ (q_2, \bot))$
+	\item $((q_1, b, A),\ (q_2, \epsilon))$
+	\item $((q_2, b, A),\ (q_2, \epsilon))$
+	\item $((q_2, \epsilon, A),\ (q_3, A))$
+	\item $((q_2, \epsilon, \bot),\ (q_3, \bot))$
 	\ee
 
 	\begin{center}
@@ -188,18 +191,19 @@ $
 
 	\noindent\textbf{\emph{Part D:}}\\
 	Let $M = (Q, \Sigma, \Gamma, \delta, s, \bot, F)$ represent the PDA defined below where:\\
-	$Q = \set{q_0, q_1, q_2}$\\
+	$Q = \set{q_0, q_1, q_2, q_3}$\\
 	$\Sigma = \set{a, b}$\\
 	$\Gamma = \set{\bot, A}$\\
 	$s = q_0$\\
-	$F = \set{q_2}$
+	$F = \set{q_3}$
 
 	\noindent$\delta$ contains the following transitions:
 	\be
 	\item $((q_0, a, \bot),\ (q_1, A\bot))$
 	\item $((q_1, a, A),\ (q_1, AA))$
-	\item $((q_1, b, A),\ (q_1, \epsilon))$
-	\item $((q_1, \epsilon, A),\ (q_2, A))$
+	\item $((q_1, b, A),\ (q_2, \epsilon))$
+	\item $((q_2, b, A),\ (q_2, \epsilon))$
+	\item $((q_2, \epsilon, A),\ (q_3, A))$
 	\ee
 	
 	\begin{center}
