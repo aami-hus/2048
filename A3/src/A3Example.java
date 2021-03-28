@@ -110,10 +110,18 @@ public class A3Example
 
       ///////////////////
       // MY OWN RANDOM TESTS
-      
+
       // test for Services.java:
       // double [] tester = {10, 20, 30};
       // System.out.println(Arrays.toString(Services.normal(tester)));
+
+      // test for Norm.java:
+      // Norm.setNorms(false, false, false);
+      // System.out.format("\nNorm getNLOs: " + Norm.getNLOs() + Norm.getNInd() + Norm.getNAtt() + "\n");
+      // Norm.setNLOs(true);
+      // Norm.setNInd(true);
+      // Norm.setNAtt(true);
+      // System.out.format("\nNorm getNLOs: " + Norm.getNLOs() + Norm.getNInd() + Norm.getNAtt() + "\n");
   }
 }
 
