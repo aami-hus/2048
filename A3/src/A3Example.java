@@ -105,6 +105,15 @@ public class A3Example
       // P.add(SE2C03);
       // P.add(SE3A04);
       // System.out.println("Measures for Design: " + Arrays.toString(P.measures(Design)));
+
+
+
+      ///////////////////
+      // MY OWN RANDOM TESTS
+      
+      // test for Services.java:
+      // double [] tester = {10, 20, 30};
+      // System.out.println(Arrays.toString(Services.normal(tester)));
   }
 }
 
