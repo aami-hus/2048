@@ -19,7 +19,7 @@ public class AttributeT{
 	}
 
 	public String getName(){
-		return name;
+		return this.name;
 	}
 
 	public IndicatorT[] getIndicators(){
