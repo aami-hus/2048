@@ -15,10 +15,12 @@ public class LOsT implements Measures{
 	private int n_exc;
 
 	public LOsT(String topic, int nblw, int nmrg, int nmts, int nexc){
-		// in AttributeT.java, change the return statement for getName so that it returns this.name
-		// instead of just name.
-		// ADD EXCEPTIONS
-
+		if (nblw < 0 || nmrg < 0 || nmts < 0 || nexc < 0){
+			throw new IllegalArgumentException();
+		}
+		if (nblw == 0 && nmrg == 0 && nmts == 0 && nexc == 0){
+			throw new IllegalArgumentException();
+		}
 		this.name = topic;
 		this.n_blw = nblw;
 		this.n_mrg = nmrg;
@@ -30,8 +32,27 @@ public class LOsT implements Measures{
 		return this.name;
 	}
 
-	public boolean equals(LOst o){
+	public boolean equals(LOsT o){
 		return this.name == o.getName();
 	}
 
+	public double[] measures(){
+		double [] a = new double[4];
+		a[0] = new Double(this.n_blw);
+		a[1] = new Double(this.n_mrg);
+		a[2] = new Double(this.n_mts);
+		a[3] = new Double(this.n_exc);
+		if(!(Norm.getNLOs())){
+			return a;
+		}
+		return Services.normal(a);
+	}
+
+	public double[] measures(IndicatorT ind){
+		throw new UnsupportedOperationException();
+	}
+
+	public double[] measures(AttributeT att){
+		throw new UnsupportedOperationException();
+	}
 }
