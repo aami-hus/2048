@@ -16,10 +16,10 @@ public class LOsT implements Measures{
 
 	public LOsT(String topic, int nblw, int nmrg, int nmts, int nexc){
 		if (nblw < 0 || nmrg < 0 || nmts < 0 || nexc < 0){
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Learning outcome cannot be negative.");
 		}
 		if (nblw == 0 && nmrg == 0 && nmts == 0 && nexc == 0){
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("All learning outcomes cannot be zero.");
 		}
 		this.name = topic;
 		this.n_blw = nblw;
@@ -49,10 +49,10 @@ public class LOsT implements Measures{
 	}
 
 	public double[] measures(IndicatorT ind){
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException("This operation is not supported by this class.");
 	}
 
 	public double[] measures(AttributeT att){
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException("This operation is not supported by this class.");
 	}
 }

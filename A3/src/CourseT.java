@@ -68,7 +68,7 @@ public class CourseT implements Measures{
 	}
 
 	public double[] measures(){
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException("This operation is not supported by this class.");
 	}
 
 	public double[] measures(IndicatorT ind){

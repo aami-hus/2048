@@ -11,11 +11,11 @@ import java.util.*;
 public class ProgramT extends HashSet<CourseT> implements Measures{
 
 	public double[] measures(){
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException("This operation is not supported by this class.");
 	}
 
 	public double[] measures(IndicatorT ind){
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException("This operation is not supported by this class.");
 	}
 
 	public double[] measures(AttributeT att){
