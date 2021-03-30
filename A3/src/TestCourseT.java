@@ -40,11 +40,6 @@ public class TestCourseT
     	LOarr2 = new LOsT[] {LO2};
     	LOarr3 = new LOsT[] {LO1, LO2};
     	norms = new double[] {0.25, 0.25, 0.25, 0.25};
-    	// same = new LOsT("topic 1", 23, 1, 6, 7);
-    	// norms = new double[] {0.25, 0.25, 0.25, 0.25};
-    	// notNorms = new double[] {25.0, 25.0, 25.0, 25.0};
-    	// ind = IndicatorT.math;
-    	// att = new AttributeT("Design", new IndicatorT[] {IndicatorT.desProcess, IndicatorT.desProcess, IndicatorT.standards});
     }
 
     @After
@@ -57,11 +52,6 @@ public class TestCourseT
         LOarr = null;
         LOarr2 = null;
         LOarr3 = null;
-        // same = null;
-        // norms = null;
-        // notNorms = null;
-        // ind = null;
-        // att = null;
     }
 
 	@Test
