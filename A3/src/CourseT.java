@@ -1,5 +1,5 @@
 /**
- * Author: Aamina Hussain
+ * Author: Aamina Hussain, hussaa54
  * Revised: March 29, 2021
  *
  * Description: Course ADT class 
