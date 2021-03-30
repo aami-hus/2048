@@ -78,6 +78,12 @@ public class TestLOsT
     }
 
     @Test
+    public void testequalsFalse()
+    {
+    	assertTrue(!(LO1.equals(LO2)));
+    }
+
+    @Test
     public void testmeasuresCase1()
     {
     	Norm.setNLOs(false);
