@@ -56,6 +56,16 @@ public class TestAttributeT
     }
 
     @Test
+    public void testgetIndicatorsNotIncluded()
+    {
+    	boolean a = true;
+    	if(Arrays.asList(Design.getIndicators()).contains(IndicatorT.desProcess) && Arrays.asList(Design.getIndicators()).contains(IndicatorT.tools)){
+    		a = false;
+    	}
+        assertTrue(a);
+    }
+
+    @Test
     public void testgetIndicatorsEdgeCase()
     {
         assertTrue(TestEmpty.getIndicators().length == 0);
