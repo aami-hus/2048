@@ -90,3 +90,35 @@ Assignment 5 #3 - DFA (minimized)
     ;
 \end{tikzpicture}
 \end{center}
+
+
+Assignment 9 #1 Transition table
+
+\begin{table}
+\centering
+\begin{tabular}{lllll}
+      & $\vdash$         & $a$             & $b$             & $\bs$            \\
+$s$   & $(s, \vdash, R)$ & $(q_3, a, R)$   & $(q_1, b, R)$   & $(t, \nd, \nd)$  \\
+$q_1$ & $(r, \vdash, R)$ & $(q_2, a, R)$   & $(s, b, R)$     & $(r, \nd, \nd)$  \\
+$q_2$ & $(r, \vdash, R)$ & $(q_1, a, R)$   & $(q_3, b, R)$   & $(r, \nd, \nd)$  \\
+$q_3$ & $(r, \vdash, R)$ & $(s, a, R)$     & $(q_2, b, R)$   & $(r, \nd, \nd)$  \\
+$t$   & $(t, \vdash, R)$ & $(t, \nd, \nd)$ & $(t, \nd, \nd)$ & $(t, \nd, \nd)$  \\
+$r$   & $(r, \vdash, R)$ & $(r, \nd, \nd)$ & $(r, \nd, \nd)$ & $(r, \nd, \nd)$ 
+\end{tabular}
+\end{table}
+
+
+Assignment 9 #2 Transition table
+
+\begin{table}
+\centering
+\begin{tabular}{llllll}
+      & $\vdash$         & $a$             & $b$             & $x$             & $\bs$            \\
+$s$   & $(s, \vdash, R)$ & $(q_1, x, R)$   & $(q_2, x, R)$   & $(s, x, R)$     & $(t, \nd, \nd)$  \\
+$q_1$ & $(r, \vdash, R)$ & $(q_1, a, R)$   & $(q_3, x, L)$   & $(q_1, x, R)$   & $(r, \nd, \nd)$  \\
+$q_2$ & $(r, \vdash, R)$ & $(q_3, x, L)$   & $(q_2, b, R)$   & $(q_2, x, R)$   & $(r, \nd, \nd)$  \\
+$q_3$ & $(s, \vdash, R)$ & $(q_3, a, L)$   & $(q_3, b, L)$   & $(q_3, x, L)$   & $(r, \nd, \nd)$  \\
+$t$   & $(t, \vdash, R)$ & $(t, \nd, \nd)$ & $(t, \nd, \nd)$ & $(t, \nd, \nd)$ & $(t, \nd, \nd)$  \\
+$r$   & $(r, \vdash, R)$ & $(r, \nd, \nd)$ & $(r, \nd, \nd)$ & $(r, \nd, \nd)$ & $(r, \nd, \nd)$ 
+\end{tabular}
+\end{table}
