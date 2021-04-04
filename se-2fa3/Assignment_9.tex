@@ -7,9 +7,12 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{url}
+\usepackage{listings}
 \usepackage{color}
 \usepackage{tikz}
 \usetikzlibrary{automata,positioning,arrows}
+\usepackage{diagbox}
+\usepackage{stackrel}
 
 \setlength {\topmargin} {-.15in}
 \setlength {\textheight} {8.6in}
@@ -119,10 +122,34 @@ at 11:50 PM on April 4.
 
   \bigskip
 
-  \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+  \textbf{Aamina Hussain, hussaa54, April 4, 2021}
 
-  \textcolor{blue}{\textbf{Put the description of your Turing machine here.}}
+Let $M = (Q, \Sigma, \Gamma, \vdash, \textvisiblespace, \delta, s, t, r)$ be the TM where:
 
+$Q = \set{s, q_1, q_2, q_3, t, r}$\\
+$\Sigma = \set{a, b}$\\
+$\Gamma = \Sigma \; \cup$ \{$\vdash,$ \textvisiblespace\}\\
+$\delta$ is defined by the following table:
+
+\bc
+\begin{table}[hbt!]
+\centering
+\begin{tabular}{l|cccc}
+      & $\vdash$         & $a$             & $b$             & \textvisiblespace            \\
+\hline
+$s$   & $(s, \vdash, R)$ & $(q_3, a, R)$   & $(q_1, b, R)$   & $(t, \--, \--)$  \\
+$q_1$ & $(r, \vdash, R)$ & $(q_2, a, R)$   & $(s, b, R)$     & $(r, \--, \--)$  \\
+$q_2$ & $(r, \vdash, R)$ & $(q_1, a, R)$   & $(q_3, b, R)$   & $(r, \--, \--)$  \\
+$q_3$ & $(r, \vdash, R)$ & $(s, a, R)$     & $(q_2, b, R)$   & $(r, \--, \--)$  \\
+$t$   & $(t, \vdash, R)$ & $(t, \--, \--)$ & $(t, \--, \--)$ & $(t, \--, \--)$  \\
+$r$   & $(r, \vdash, R)$ & $(r, \--, \--)$ & $(r, \--, \--)$ & $(r, \--, \--)$ 
+\end{tabular}
+\end{table}
+\ec
+
+This TM only moves right, starting from the left endmarker, and every time it reads from the input tape, it goes to the corresponding state. State $s$ is when there are an even number of a's and b's. State $q_1$ is when there are an odd number of b's but an even number of a's. State $q_2$ is when there are an odd number of a's and an odd number of b's. State $q_3$ is when there are an odd number of a's and an even number of b's. You can only transition to the acceptance state $t$ if you are in state $s$ when you read the first blank symbol \textvisiblespace.
+
+\clearpage
   \item \textbf{[10 points]} Let $\Sigma = \set{a,b}$ and \[L = \set{x
     \in \Sigma^* \mid \#a(x) = \#b(x)}.\] Construct a total Turing
     machine that accepts $L$.  Present the TM using a transition table
@@ -130,9 +157,39 @@ at 11:50 PM on April 4.
 
   \bigskip
 
-  \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+  \textbf{Aamina Hussain, hussaa54, April 4, 2021}
 
-  \textcolor{blue}{\textbf{Put the description of your Turiing machine here.}}
+Let $M = (Q, \Sigma, \Gamma, \vdash, \textvisiblespace, \delta, s, t, r)$ be the TM where:
+
+$Q = \set{s, q_1, q_2, q_3, t, r}$\\
+$\Sigma = \set{a, b}$\\
+$\Gamma = \Sigma \; \cup$ \{$\vdash,$ \textvisiblespace, $x$\}\\
+$\delta$ is defined by the following table:
+
+  \bc
+  \begin{table}[h]
+  \centering
+  \begin{tabular}{l|ccccc}
+        & $\vdash$         & $a$             & $b$             & $x$             & \textvisiblespace\\
+  \hline
+  $s$   & $(s, \vdash, R)$ & $(q_1, x, R)$   & $(q_2, x, R)$   & $(s, x, R)$     & $(t, \--, \--)$  \\
+  $q_1$ & $(r, \vdash, R)$ & $(q_1, a, R)$   & $(q_3, x, L)$   & $(q_1, x, R)$   & $(r, \--, \--)$  \\
+  $q_2$ & $(r, \vdash, R)$ & $(q_3, x, L)$   & $(q_2, b, R)$   & $(q_2, x, R)$   & $(r, \--, \--)$  \\
+  $q_3$ & $(s, \vdash, R)$ & $(q_3, a, L)$   & $(q_3, b, L)$   & $(q_3, x, L)$   & $(r, \--, \--)$  \\
+  $t$   & $(t, \vdash, R)$ & $(t, \--, \--)$ & $(t, \--, \--)$ & $(t, \--, \--)$ & $(t, \--, \--)$  \\
+  $r$   & $(r, \vdash, R)$ & $(r, \--, \--)$ & $(r, \--, \--)$ & $(r, \--, \--)$ & $(r, \--, \--)$ 
+  \end{tabular}
+  \end{table}
+  \ec
+
+\begin{enumerate}
+\item Begin in the start state $s$.
+\item If there is an $a$ available before a $b$ on the input tape: Move right until you see the first a, replace it with an x, and transition into state $q_1$. Then continue moving right until you see the first b, replace it with an x, and transition into state $q_3$. Then move left until you reach the left endmarker and transition into state $s$.
+\item If there is a $b$ available before an $a$ on the input tape: Move right until you see the first b, replace it with an x, and transition into state $q_2$. Then continue moving right until you see the first a, replace it with an x, and transition into state $q_3$. Then move left until you reach the left endmarker and transition into state $s$.
+\item Repeat step b)/step c) until all the a's and b's are replaced with x's.
+\item You can only transition to the acceptance state $t$ if you are in state $s$ when you read the first blank symbol \textvisiblespace.
+\end{enumerate}
+
 
 \ee
 
