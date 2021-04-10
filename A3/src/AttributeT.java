@@ -33,19 +33,6 @@ public class AttributeT{
 		return arr;
 	}
 
-	public static void main(String[] args){
-		// ArrayList<IndicatorT> tester = new ArrayList<IndicatorT>();
-		// tester.add(IndicatorT.math);
-		// tester.add(IndicatorT,assumpt);
-		// AttributeT tester2 = new AttributeT("yes", tester);
-		// System.out.println(tester);
-		// System.out.println(tester2);
-		// System.out.println(tester2.getName());
-		// System.out.println(tester2.getIndicators());
-
-
-	}
-
 }
 
 
