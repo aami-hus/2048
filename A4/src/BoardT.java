@@ -20,8 +20,8 @@ public class BoardT{
 		this.board = new int[4][4];
 		this.score = 0;
 		this.empty = new ArrayList<ArrayList<Integer>>();
-		for(int i = 0; i < size; i++){
-			for(int j = 0; j < size; j++){
+		for(int i = 0; i < this.size; i++){
+			for(int j = 0; j < this.size; j++){
 				ArrayList<Integer> cell = new ArrayList<Integer>();
 				cell.add(i);
 				cell.add(j);
@@ -65,7 +65,12 @@ public class BoardT{
 		return this.board;
 	}
 
+	public int getScore(){
+		return this.score;
+	}
+
 	// assumption: input will always be 4x4 array
+	// assumption: all numbers in array will be correct (aka 0 or a power of 2 (not including 1))
 	public void setBoard(int[][] b){
 		this.board = b;
 	}
@@ -75,9 +80,40 @@ public class BoardT{
 		return randomNum;
 	}
 
+	// not complete yet
 	public void resetBoard(){
 		this.board = new int[4][4];
 		this.score = 0;
 
 	}
+
+	public boolean isValidMoveRight(){
+		boolean valid;
+		for(int i = 0; i < this.size; i++){
+			if(this.board[i][0] == 0 && this.board[i][1] == 0 && this.board[i][2] == 0){
+				;
+			}
+			else if(this.board[i][0] == 0 && this.board[i][1] == 0 && this.board[i][2] != this.board[i][3]
+				&& this.board[i][2] != 0 && this.board[i][3] != 0){
+				
+			}
+			else if(this.board[i][0] == 0 && this.board[i][1] != this.board[i][2]
+				&& this.board[i][2] != this.board[i][3] && this.board[i][1] != 0 &&
+				this.board[i][2] != 0 && this.board[i][3] != 0){
+				valid = false;
+			}
+			else if(this.board[i][0] != this.board[i][1] && this.board[i][1] != this.board[i][2]
+				&& this.board[i][2] != this.board[i][3] && this.board[i][0] != 0 && this.board[i][1] != 0
+				&& this.board[i][2] != 0 && this.board[i][3] != 0){
+				valid = false;
+			}
+			else{
+				return true;
+			}
+		}
+		return false;
+	}
+
+
+
 }
