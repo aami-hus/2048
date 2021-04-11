@@ -13,12 +13,14 @@ public class BoardT{
 	private int[][] board;
 	private int score;
 	private ArrayList<ArrayList<Integer>> empty;
+	private boolean win;
 
 	public final static int size = 4;
 
 	public BoardT(){
 		this.board = new int[4][4];
 		this.score = 0;
+		this.win = false;
 		this.empty = new ArrayList<ArrayList<Integer>>();
 		for(int i = 0; i < this.size; i++){
 			for(int j = 0; j < this.size; j++){
@@ -69,6 +71,14 @@ public class BoardT{
 		return this.score;
 	}
 
+	public ArrayList<ArrayList<Integer>> emptyCells(){
+		return this.empty;
+	}
+
+	public boolean isGameWon(){
+		return this.win;
+	}
+
 	// assumption: input will always be 4x4 array
 	// assumption: all numbers in array will be correct (aka 0 or a power of 2 (not including 1))
 	public void setBoard(int[][] b){
@@ -88,24 +98,23 @@ public class BoardT{
 	}
 
 	public boolean isValidMoveRight(){
-		boolean valid;
 		for(int i = 0; i < this.size; i++){
 			if(this.board[i][0] == 0 && this.board[i][1] == 0 && this.board[i][2] == 0){
 				;
 			}
 			else if(this.board[i][0] == 0 && this.board[i][1] == 0 && this.board[i][2] != this.board[i][3]
 				&& this.board[i][2] != 0 && this.board[i][3] != 0){
-				
+				;
 			}
 			else if(this.board[i][0] == 0 && this.board[i][1] != this.board[i][2]
 				&& this.board[i][2] != this.board[i][3] && this.board[i][1] != 0 &&
 				this.board[i][2] != 0 && this.board[i][3] != 0){
-				valid = false;
+				;
 			}
 			else if(this.board[i][0] != this.board[i][1] && this.board[i][1] != this.board[i][2]
 				&& this.board[i][2] != this.board[i][3] && this.board[i][0] != 0 && this.board[i][1] != 0
 				&& this.board[i][2] != 0 && this.board[i][3] != 0){
-				valid = false;
+				;
 			}
 			else{
 				return true;
@@ -114,6 +123,131 @@ public class BoardT{
 		return false;
 	}
 
+	public boolean isValidMoveLeft(){
+		for(int i = 0; i < this.size; i++){
+			if(this.board[i][3] == 0 && this.board[i][2] == 0 && this.board[i][1] == 0){
+				;
+			}
+			else if(this.board[i][3] == 0 && this.board[i][2] == 0 && this.board[i][1] != this.board[i][0]
+				&& this.board[i][1] != 0 && this.board[i][0] != 0){
+				;
+			}
+			else if(this.board[i][3] == 0 && this.board[i][2] != this.board[i][1]
+				&& this.board[i][1] != this.board[i][0] && this.board[i][2] != 0 &&
+				this.board[i][1] != 0 && this.board[i][0] != 0){
+				;
+			}
+			else if(this.board[i][0] != this.board[i][1] && this.board[i][1] != this.board[i][2]
+				&& this.board[i][2] != this.board[i][3] && this.board[i][0] != 0 && this.board[i][1] != 0
+				&& this.board[i][2] != 0 && this.board[i][3] != 0){
+				;
+			}
+			else{
+				return true;
+			}
+		}
+		return false;
+	}
 
+	public boolean isValidMoveUp(){
+		for(int i = 0; i < this.size; i++){
+
+			if(this.board[1][i] == 0 && this.board[2][i] == 0 && this.board[3][i] == 0){}
+
+			else if(this.board[3][i] == 0 && this.board[2][i] == 0 && this.board[1][i] != this.board[0][i]
+				&& this.board[1][i] != 0 && this.board[0][i] != 0){}
+
+			else if(this.board[3][i] == 0 && this.board[2][i] != this.board[1][i]
+				&& this.board[1][i] != this.board[0][i] && this.board[2][i] != 0 &&
+				this.board[1][i] != 0 && this.board[0][i] != 0){}
+
+			else if(this.board[0][i] != this.board[1][i] && this.board[1][i] != this.board[2][i]
+				&& this.board[2][i] != this.board[3][i] && this.board[0][i] != 0 && this.board[1][i] != 0
+				&& this.board[2][i] != 0 && this.board[3][i] != 0){}
+
+			else{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean isValidMoveDown(){
+		for(int i = 0; i < this.size; i++){
+			
+			if(this.board[0][i] == 0 && this.board[1][i] == 0 && this.board[2][i] == 0){}
+
+			else if(this.board[0][i] == 0 && this.board[1][i] == 0 && this.board[2][i] != this.board[3][i]
+				&& this.board[2][i] != 0 && this.board[3][i] != 0){}
+
+			else if(this.board[0][i] == 0 && this.board[1][i] != this.board[2][i]
+				&& this.board[2][i] != this.board[3][i] && this.board[1][i] != 0 &&
+				this.board[2][i] != 0 && this.board[3][i] != 0){}
+
+			else if(this.board[0][i] != this.board[1][i] && this.board[1][i] != this.board[2][i]
+				&& this.board[2][i] != this.board[3][i] && this.board[0][i] != 0 && this.board[1][i] != 0
+				&& this.board[2][i] != 0 && this.board[3][i] != 0){}
+
+			else{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void moveRight(){
+
+		if(!(isValidMoveRight())){
+			return;
+		}
+
+		for(int i = 0; i < this.size; i++){
+			if(this.board[i][2] == 0 && this.board[i][3] == 0){
+				this.board[i][2] = this.board[i][0];
+				this.board[i][3] = this.board[i][1];
+				this.board[i][0] = 0;
+				this.board[i][1] = 0;
+			}
+			else if(this.board[i][1] == 0 && this.board[i][2] == 0){
+				this.board[i][2] = this.board[i][0];
+				this.board[i][0] = 0;
+			}
+			for(int j = 0; j < this.size; j++){
+				if(this.board[i][3-j] == 0){
+					for(int k = 0; k < 3-j; k++){
+						this.board[i][3-j-k] = this.board[i][3-j-k-1];
+					}
+					this.board[i][0] = 0;
+				}
+			}
+		}
+
+		for(int i = 0; i < this.size; i++){
+			for(int j = 0; j < this.size-1; j++){
+				if(this.board[i][3-j] == this.board[i][3-j-1]){
+					this.board[i][3-j] = this.board[i][3-j-1]*2;
+					for(int k = 1; k < 3-j; k++){
+						this.board[i][3-j-k] = this.board[i][3-j-k-1];
+					}
+					this.board[i][0] = 0;
+				}
+			}
+		}
+
+		this.empty.clear();
+		for(int i = 0; i < this.size; i++){
+			for(int j = 0; j < this.size; j++){
+				if(this.board[i][j] == 0){
+					ArrayList<Integer> cell = new ArrayList<Integer>();
+					cell.add(i);
+					cell.add(j);
+					this.empty.add(cell);
+				}
+			}
+		}
+		int randomCell = randomGenerator(0, this.empty.size()-1);
+		this.board[this.empty.get(randomCell).get(0)][this.empty.get(randomCell).get(1)] = 2;
+		this.empty.remove(randomCell);
+	}
 
 }
