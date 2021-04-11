@@ -22,8 +22,8 @@ doc:
 	cd latex && $(MAKE)
 
 expt:
-	$(JC) $(JCLASS) $(JFLAGS) src/A3Example.java
-	$(JVM) src/A3Example
+	$(JC) $(JCLASS) $(JFLAGS) src/A4Example.java
+	$(JVM) src/A4Example
 
 clean:
 	rm -rf html
