@@ -12,17 +12,17 @@ public class BoardT{
 	
 	private int[][] board;
 	private int score;
-	private ArrayList<ArrayList<int>> empty;
+	private ArrayList<ArrayList<Integer>> empty;
 
 	public final static int size = 4;
 
 	public BoardT(){
 		this.board = new int[4][4];
 		this.score = 0;
-		this.empty = new ArrayList<ArrayList<int>>();
+		this.empty = new ArrayList<ArrayList<Integer>>();
 		for(int i = 0; i < size; i++){
 			for(int j = 0; j < size; j++){
-				ArrayList<int> cell = new ArrayList<int>();
+				ArrayList<Integer> cell = new ArrayList<Integer>();
 				cell.add(i);
 				cell.add(j);
 				this.empty.add(cell);
@@ -42,14 +42,14 @@ public class BoardT{
 		this.empty.remove(randomCell);
 
 		if(randomInt == 4){
-			int randomCell = randomGenerator(0, this.empty.size()-1);
+			randomCell = randomGenerator(0, this.empty.size()-1);
 			this.board[this.empty.get(randomCell).get(0)][this.empty.get(randomCell).get(1)] = 2;
 			this.empty.remove(randomCell);
 		}
 
 		else{
-			int randomCell = randomGenerator(0, this.empty.size()-1);
-			int randomInt = randomGenerator(0,1);
+			randomCell = randomGenerator(0, this.empty.size()-1);
+			randomInt = randomGenerator(0,1);
 			if(randomInt == 0){
 				randomInt = 2;
 			}
@@ -61,19 +61,23 @@ public class BoardT{
 		}
 	}
 
+	public int[][] getBoard(){
+		return this.board;
+	}
+
 	// assumption: input will always be 4x4 array
 	public void setBoard(int[][] b){
 		this.board = b;
 	}
 
 	public int randomGenerator(int min, int max){
-		int randomInt = (int)Math.floor(Math.random()*(max-min+1)+min);
-		return randomInt;
+		int randomNum = (int)Math.floor(Math.random()*(max-min+1)+min);
+		return randomNum;
 	}
 
 	public void resetBoard(){
 		this.board = new int[4][4];
 		this.score = 0;
-		
+
 	}
 }
