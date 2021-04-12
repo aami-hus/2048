@@ -14,6 +14,7 @@ public class BoardT{
 	private int score;
 	private ArrayList<ArrayList<Integer>> empty;
 	private boolean win;
+	private boolean lose;
 
 	public final static int size = 4;
 
@@ -21,6 +22,7 @@ public class BoardT{
 		this.board = new int[4][4];
 		this.score = 0;
 		this.win = false;
+		this.lose = false;
 		this.empty = new ArrayList<ArrayList<Integer>>();
 		for(int i = 0; i < this.size; i++){
 			for(int j = 0; j < this.size; j++){
@@ -248,6 +250,71 @@ public class BoardT{
 		int randomCell = randomGenerator(0, this.empty.size()-1);
 		this.board[this.empty.get(randomCell).get(0)][this.empty.get(randomCell).get(1)] = 2;
 		this.empty.remove(randomCell);
+
+		// call fxn to display "try again" or something
+		if(!(this.isValidMoveRight() && this.isValidMoveLeft() && this.isValidMoveUp() && this.isValidMoveDown())){
+			this.lose = true;
+		}
+	}
+
+	public void moveLeft(){
+
+		if(!(isValidMoveLeft())){
+			return;
+		}
+
+		for(int i = 0; i < this.size; i++){
+			if(this.board[i][0] == 0 && this.board[i][1] == 0){
+				this.board[i][0] = this.board[i][2];
+				this.board[i][1] = this.board[i][3];
+				this.board[i][2] = 0;
+				this.board[i][3] = 0;
+			}
+			else if(this.board[i][1] == 0 && this.board[i][2] == 0){
+				this.board[i][1] = this.board[i][3];
+				this.board[i][3] = 0;
+			}
+			for(int j = 0; j < this.size; j++){
+				if(this.board[i][j] == 0){
+					for(int k = 0; k < 3-j; k++){
+						this.board[i][j+k] = this.board[i][j+k+1];
+					}
+					this.board[i][3] = 0;
+				}
+			}
+		}
+
+		for(int i = 0; i < this.size; i++){
+			for(int j = 0; j < this.size-1; j++){
+				if(this.board[i][j] == this.board[i][j+1]){
+					this.board[i][j] = this.board[i][j+1]*2;
+					for(int k = 1; k < 3-j; k++){
+						this.board[i][j+k] = this.board[i][j+k+1];
+					}
+					this.board[i][3] = 0;
+				}
+			}
+		}
+
+		this.empty.clear();
+		for(int i = 0; i < this.size; i++){
+			for(int j = 0; j < this.size; j++){
+				if(this.board[i][j] == 0){
+					ArrayList<Integer> cell = new ArrayList<Integer>();
+					cell.add(i);
+					cell.add(j);
+					this.empty.add(cell);
+				}
+			}
+		}
+		int randomCell = randomGenerator(0, this.empty.size()-1);
+		this.board[this.empty.get(randomCell).get(0)][this.empty.get(randomCell).get(1)] = 2;
+		this.empty.remove(randomCell);
+
+		// call fxn to display "try again" or something
+		if(!(this.isValidMoveRight() && this.isValidMoveLeft() && this.isValidMoveUp() && this.isValidMoveDown())){
+			this.lose = true;
+		}
 	}
 
 }
