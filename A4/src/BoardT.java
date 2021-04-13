@@ -45,7 +45,7 @@ public class BoardT{
 			}
 		}
 
-		// Makes one random cell a 2 or a 4, then removes it from the empty set
+		// Makes a random cell a 2 or a 4, then removes it from the empty cells set.
 		int randomCell = randomGenerator(0, this.empty.size()-1);
 		int randomInt = randomGenerator(0,1);
 		if(randomInt == 0){
@@ -57,6 +57,9 @@ public class BoardT{
 		this.board[this.empty.get(randomCell).get(0)][this.empty.get(randomCell).get(1)] = randomInt;
 		this.empty.remove(randomCell);
 
+		// If the previous random cell is already a 4, then make the next random cell a 2, then remove
+		// it from the set of empty cells.
+		// If not, then it makes another random cell a 2 or a 4, then removes it from the empty cells set.
 		if(randomInt == 4){
 			randomCell = randomGenerator(0, this.empty.size()-1);
 			this.board[this.empty.get(randomCell).get(0)][this.empty.get(randomCell).get(1)] = 2;
@@ -117,15 +120,20 @@ public class BoardT{
 		return this.lose;
 	}
 
-	// assumption: input will always be 4x4 array
-	// assumption: all numbers in array will be correct (aka 0 or a power of 2 (not including 1))
-
    /**
 	* @brief Sets the board to a predefined board
 	* @details Makes it easier for testing purposes since values are not random
 	* @param b a board that has already been created
 	*/
 	public void setBoard(int[][] b){
+		if(b.length != 4){
+			throw new IllegalArgumentException("Board must be 4x4.");
+		}
+		for(int i = 0; i < b.length; i++){
+			if(b[i].length != 4){
+				throw new IllegalArgumentException("Board must be 4x4.");
+			}
+		}
 		this.board = b;
 	}
 
@@ -155,23 +163,19 @@ public class BoardT{
 	*/
 	public boolean isValidMoveRight(){
 		for(int i = 0; i < this.size; i++){
-			if(this.board[i][0] == 0 && this.board[i][1] == 0 && this.board[i][2] == 0){
-				;
-			}
+			if(this.board[i][0] == 0 && this.board[i][1] == 0 && this.board[i][2] == 0){}
+
 			else if(this.board[i][0] == 0 && this.board[i][1] == 0 && this.board[i][2] != this.board[i][3]
-				&& this.board[i][2] != 0 && this.board[i][3] != 0){
-				;
-			}
+				&& this.board[i][2] != 0 && this.board[i][3] != 0){}
+
 			else if(this.board[i][0] == 0 && this.board[i][1] != this.board[i][2]
 				&& this.board[i][2] != this.board[i][3] && this.board[i][1] != 0 &&
-				this.board[i][2] != 0 && this.board[i][3] != 0){
-				;
-			}
+				this.board[i][2] != 0 && this.board[i][3] != 0){}
+
 			else if(this.board[i][0] != this.board[i][1] && this.board[i][1] != this.board[i][2]
 				&& this.board[i][2] != this.board[i][3] && this.board[i][0] != 0 && this.board[i][1] != 0
-				&& this.board[i][2] != 0 && this.board[i][3] != 0){
-				;
-			}
+				&& this.board[i][2] != 0 && this.board[i][3] != 0){}
+
 			else{
 				return true;
 			}
@@ -185,23 +189,19 @@ public class BoardT{
 	*/
 	public boolean isValidMoveLeft(){
 		for(int i = 0; i < this.size; i++){
-			if(this.board[i][3] == 0 && this.board[i][2] == 0 && this.board[i][1] == 0){
-				;
-			}
+			if(this.board[i][3] == 0 && this.board[i][2] == 0 && this.board[i][1] == 0){}
+
 			else if(this.board[i][3] == 0 && this.board[i][2] == 0 && this.board[i][1] != this.board[i][0]
-				&& this.board[i][1] != 0 && this.board[i][0] != 0){
-				;
-			}
+				&& this.board[i][1] != 0 && this.board[i][0] != 0){}
+
 			else if(this.board[i][3] == 0 && this.board[i][2] != this.board[i][1]
 				&& this.board[i][1] != this.board[i][0] && this.board[i][2] != 0 &&
-				this.board[i][1] != 0 && this.board[i][0] != 0){
-				;
-			}
+				this.board[i][1] != 0 && this.board[i][0] != 0){}
+
 			else if(this.board[i][0] != this.board[i][1] && this.board[i][1] != this.board[i][2]
 				&& this.board[i][2] != this.board[i][3] && this.board[i][0] != 0 && this.board[i][1] != 0
-				&& this.board[i][2] != 0 && this.board[i][3] != 0){
-				;
-			}
+				&& this.board[i][2] != 0 && this.board[i][3] != 0){}
+
 			else{
 				return true;
 			}
@@ -392,7 +392,6 @@ public class BoardT{
 		this.board[this.empty.get(randomCell).get(0)][this.empty.get(randomCell).get(1)] = 2;
 		this.empty.remove(randomCell);
 
-		// call fxn to display "try again" or something
 		if(!(this.isValidMoveRight() && this.isValidMoveLeft() && this.isValidMoveUp() && this.isValidMoveDown())){
 			this.lose = true;
 		}
@@ -460,7 +459,6 @@ public class BoardT{
 		this.board[this.empty.get(randomCell).get(0)][this.empty.get(randomCell).get(1)] = 2;
 		this.empty.remove(randomCell);
 
-		// call fxn to display "try again" or something
 		if(!(this.isValidMoveRight() && this.isValidMoveLeft() && this.isValidMoveUp() && this.isValidMoveDown())){
 			this.lose = true;
 		}
@@ -528,7 +526,6 @@ public class BoardT{
 		this.board[this.empty.get(randomCell).get(0)][this.empty.get(randomCell).get(1)] = 2;
 		this.empty.remove(randomCell);
 
-		// call fxn to display "try again" or something
 		if(!(this.isValidMoveRight() && this.isValidMoveLeft() && this.isValidMoveUp() && this.isValidMoveDown())){
 			this.lose = true;
 		}
