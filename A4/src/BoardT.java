@@ -81,6 +81,10 @@ public class BoardT{
 		return this.win;
 	}
 
+	public boolean isGameLost(){
+		return this.lose;
+	}
+
 	// assumption: input will always be 4x4 array
 	// assumption: all numbers in array will be correct (aka 0 or a power of 2 (not including 1))
 	public void setBoard(int[][] b){
@@ -92,11 +96,10 @@ public class BoardT{
 		return randomNum;
 	}
 
-	// not complete yet
 	public void resetBoard(){
-		this.board = new int[4][4];
-		this.score = 0;
-
+		BoardT temp = new BoardT();
+		this.board = temp.board;
+		temp = null;
 	}
 
 	public boolean isValidMoveRight(){
@@ -228,6 +231,9 @@ public class BoardT{
 			for(int j = 0; j < this.size-1; j++){
 				if(this.board[i][3-j] == this.board[i][3-j-1]){
 					this.board[i][3-j] = this.board[i][3-j-1]*2;
+					if(this.board[i][3-j-1]*2 == 2048){
+						this.win = true;
+					}
 					this.score += this.board[i][3-j-1]*2;
 					for(int k = 1; k < 3-j; k++){
 						this.board[i][3-j-k] = this.board[i][3-j-k-1];
@@ -289,6 +295,9 @@ public class BoardT{
 			for(int j = 0; j < this.size-1; j++){
 				if(this.board[i][j] == this.board[i][j+1]){
 					this.board[i][j] = this.board[i][j+1]*2;
+					if(this.board[i][j+1]*2 == 2048){
+						this.win = true;
+					}
 					this.score += this.board[i][j+1]*2;
 					for(int k = 1; k < 3-j; k++){
 						this.board[i][j+k] = this.board[i][j+k+1];
@@ -350,6 +359,9 @@ public class BoardT{
 			for(int j = 0; j < this.size-1; j++){
 				if(this.board[j][i] == this.board[j+1][i]){
 					this.board[j][i] = this.board[j+1][i]*2;
+					if(this.board[j+1][i]*2 == 2048){
+						this.win = true;
+					}
 					this.score += this.board[j+1][i]*2;
 					for(int k = 1; k < 3-j; k++){
 						this.board[j+k][i] = this.board[j+k+1][i];
@@ -411,6 +423,9 @@ public class BoardT{
 			for(int j = 0; j < this.size-1; j++){
 				if(this.board[3-j][i] == this.board[3-j-1][i]){
 					this.board[3-j][i] = this.board[3-j-1][i]*2;
+					if(this.board[3-j-1][i]*2 == 2048){
+						this.win = true;
+					}
 					this.score += this.board[3-j-1][i]*2;
 					for(int k = 1; k < 3-j; k++){
 						this.board[3-j-k][i] = this.board[3-j-k-1][i];
