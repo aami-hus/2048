@@ -124,6 +124,7 @@ public class BoardT{
 	* @brief Sets the board to a predefined board
 	* @details Makes it easier for testing purposes since values are not random
 	* @param b a board that has already been created
+	* @throws IllegalArgumentException - if the entered 2D array is not 4x4
 	*/
 	public void setBoard(int[][] b){
 		if(b.length != 4){
@@ -138,6 +139,15 @@ public class BoardT{
 	}
 
    /**
+	* @brief Restarts/reinitializes the current game
+	*/
+	public void resetBoard(){
+		BoardT temp = new BoardT();
+		this.board = temp.board;
+		temp = null;
+	}
+
+   /**
 	* @brief Generates a random number between (and including) two given numbers
 	* @param min The lower bound of the range
 	* @param max The upper bound of the range
@@ -146,15 +156,6 @@ public class BoardT{
 	public int randomGenerator(int min, int max){
 		int randomNum = (int)Math.floor(Math.random()*(max-min+1)+min);
 		return randomNum;
-	}
-
-   /**
-	* @brief Restarts/reinitializes the current game
-	*/
-	public void resetBoard(){
-		BoardT temp = new BoardT();
-		this.board = temp.board;
-		temp = null;
 	}
 
    /**

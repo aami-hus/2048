@@ -16,14 +16,15 @@ public class A4Example{
 										{1,1024,1024,4}, 
 										{8,1024,8,4}, 
 										{2,2,0,4}};
+		int[][] incorrectGame = new int[][] {{1,2,3,4}, {1,2,3,4}, {1,2,3,4}, {1,2,3,4}, {1,2,3,4}};
 		game.setBoard(ownGame);
-		View.printWelcomeMessage();
-		View.printBoard(game);
-		View.printMovePrompt();
-		View.printScore(game);
-		View.printLosingMessage();
-		View.printWinningMessage();
-		View.printFarewellMessage();
+		// View.printWelcomeMessage();
+		// View.printBoard(game);
+		// View.printMovePrompt();
+		// View.printScore(game);
+		// View.printLosingMessage();
+		// View.printWinningMessage();
+		// View.printFarewellMessage();
 		// System.out.println(Arrays.deepToString(game.getBoard()));
 		// game.resetBoard();
 		// System.out.println(Arrays.deepToString(game.getBoard()));
