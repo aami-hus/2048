@@ -20,7 +20,6 @@ public class View{
 		System.out.println("--------------------------------------");
 	}
 
-	// spacing based on highest tile ever was 5 digits
    /**
 	* @brief Displays the board of the game on the screen
 	* @param b The given game board
