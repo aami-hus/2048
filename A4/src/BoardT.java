@@ -19,6 +19,7 @@ public class BoardT{
 	// State Variables
 	private int[][] board;
 	private int score;
+	private static int highscore = 0;
 	private ArrayList<ArrayList<Integer>> empty;
 	private boolean win;
 	private boolean lose;
@@ -97,6 +98,14 @@ public class BoardT{
 	}
 
    /**
+	* @brief Gets the best score
+	* @return The best score
+	*/
+	public int getHighScore(){
+		return this.highscore;
+	}
+
+   /**
 	* @brief Gets the the set of empty cells that are on the board
 	* @return The set of empty cells
 	*/
@@ -144,6 +153,9 @@ public class BoardT{
 	public void resetBoard(){
 		BoardT temp = new BoardT();
 		this.board = temp.board;
+		this.score = 0;
+		this.win = false;
+		this.lose = false;
 		temp = null;
 	}
 
@@ -303,6 +315,9 @@ public class BoardT{
 						this.win = true;
 					}
 					this.score += this.board[i][3-j-1]*2;
+					if(this.score > this.highscore){
+						this.highscore = this.score;
+					}
 					for(int k = 1; k < 3-j; k++){
 						this.board[i][3-j-k] = this.board[i][3-j-k-1];
 					}
@@ -370,6 +385,9 @@ public class BoardT{
 						this.win = true;
 					}
 					this.score += this.board[i][j+1]*2;
+					if(this.score > this.highscore){
+						this.highscore = this.score;
+					}
 					for(int k = 1; k < 3-j; k++){
 						this.board[i][j+k] = this.board[i][j+k+1];
 					}
@@ -437,6 +455,9 @@ public class BoardT{
 						this.win = true;
 					}
 					this.score += this.board[j+1][i]*2;
+					if(this.score > this.highscore){
+						this.highscore = this.score;
+					}
 					for(int k = 1; k < 3-j; k++){
 						this.board[j+k][i] = this.board[j+k+1][i];
 					}
@@ -504,6 +525,9 @@ public class BoardT{
 						this.win = true;
 					}
 					this.score += this.board[3-j-1][i]*2;
+					if(this.score > this.highscore){
+						this.highscore = this.score;
+					}
 					for(int k = 1; k < 3-j; k++){
 						this.board[3-j-k][i] = this.board[3-j-k-1][i];
 					}
