@@ -161,67 +161,75 @@ BoardT():
 \item transition: \\
       board $:=$ 
       $\langle \begin{array}{c}
-      \langle \mbox{randomCellType()}_0, ... ... ,\mbox{randomCellType()}_7 \rangle\\
-      \langle \mbox{randomCellType()}_0, ... ... ,\mbox{randomCellType()}_7 \rangle\\
-      \langle \mbox{randomCellType()}_0, ... ... ,\mbox{randomCellType()}_7 \rangle\\
-      \langle \mbox{randomCellType()}_0, ... ... ,\mbox{randomCellType()}_7 \rangle\\
-      \langle \mbox{randomCellType()}_0, ... ... ,\mbox{randomCellType()}_7 \rangle\\
-      \langle \mbox{randomCellType()}_0, ... ... ,\mbox{randomCellType()}_7 \rangle\\
-      \langle \mbox{randomCellType()}_0, ... ... ,\mbox{randomCellType()}_7 \rangle\\
-      \langle \mbox{randomCellType()}_0, ... ... ,\mbox{randomCellType()}_7 \rangle\\
+      \langle 0, 0, 0, 0 \rangle\\
+      \langle 0, 0, 0, 0 \rangle\\
+      \langle 0, 0, 0, 0 \rangle\\
+      \langle 0, 0, 0, 0 \rangle\\
       \end{array} \rangle$ \\ 
-      status, moves $=$ true, 0
+      score, win, lose, empty $=$ 0, False, False, $\cup (\{empty cells\})$
 \item output: $out := \mathit{self}$
 \item exception: None
 \end{itemize}
 
-\noindent BoardT($b$):
+\noindent getBoard():
 \begin{itemize}
-\item transition: board, status, moves $=$ $b$, true, 0
-\item output: $out := \mathit{self}$
+\item output: $out :=$ board
 \item exception: None
 \end{itemize}
 
-\noindent getStatus():
+\noindent getScore():
 \begin{itemize}
-\item transition: none
-\item output: $out :=$ status
+\item output: $out :=$ score
 \item exception: None
 \end{itemize}
 
-\noindent getMessage():
+\noindent emptyCells():
 \begin{itemize}
-\item transition: none
-\item output: $out :=$ (condtion.message(moves))
+\item output: $out :=$ empty
 \item exception: None
 \end{itemize}
 
-\noindent getCell($x, y$):
+\noindent isGameWon():
 \begin{itemize}
-\item output: $out :=$ board[$y$][7 - $x$]
-\item exception: $exc :=$ ($\neg$ validateCell($x, y) \Rightarrow$ IndexOutOfBoundsException)
+\item output: $out :=$ win
+\item exception: None
 \end{itemize}
 
-\noindent setCondition($c$):
+\noindent isGameLost():
 \begin{itemize}
-\item transition: condition $:=$ $c$
+\item output: $out :=$ lose
+\item exception: None
+\end{itemize}
+
+\noindent setBoard($b$):
+\begin{itemize}
+  \item transition: board $:= b$ 
+  \item output: None
+  \item exception: $exc :=$ (($\neg$ ($|b| = 4$) 
+  $\Rightarrow$ IllegalArgumentException) $|$ 
+  ($\forall(i : [0...size-1]| (\neg (|b[i]| = 4) \Rightarrow$ False $|$ True $\Rightarrow$ True) 
+  $\Rightarrow$ IllegalArgumentException)))
+\end{itemize}
+
+\noindent resetBoard():
+\begin{itemize}
+\item transition: \\
+      board $:=$ 
+      $\langle \begin{array}{c}
+      \langle 0, 0, 0, 0 \rangle\\
+      \langle 0, 0, 0, 0 \rangle\\
+      \langle 0, 0, 0, 0 \rangle\\
+      \langle 0, 0, 0, 0 \rangle\\
+      \end{array} \rangle$ \\ 
+      score, win, lose, empty $=$ 0, False, False, $\cup (\{empty cells\})$
 \item output: None
 \item exception: None
 \end{itemize}
 
-\noindent remove($input$):
+\noindent isValidMoveRight():
 \begin{itemize}
-  \item transition: board $:=$ markCell($input$) $\Rightarrow$ ($\forall i : \mathbb{N}$ $|$ $i < size$ $\wedge$ board[$i$].removeAll($CellType.E$))
-  \item output: None
-  \item exception: $exc :=$ (($\neg$ validateConnectivity($input) \Rightarrow$ IllegalArgumentExceptio) $|$ ()$|input|$ = 1 $\Rightarrow$ IllegalArgumentException))
-\end{itemize}
-
-\noindent replaceEliminated($input$):
-\begin{itemize}
-\item transition: board $:=$\\
-  ($|board[i]|$ $<$ size $\Rightarrow$ ($\forall$ $i : \mathbb{N}$ $|$ $|input| <= i < size$ . board[$i$] $||$ <randomCellType()>)) \\
-  \medskip
-  \textit{// Add randomized colored cell to a row if that row is missing some cells}
+\item output: $\forall i : [0...size-1]$ $(\forall j : [0...size-2]$ $|$ $(board[i][j] \ne 0 \land board[i][j+1]=0 \Rightarrow True$ $|$ $board[i][j] = board[i][j+1] \land board[i][j], board[i][j+1] \ne 0 \Rightarrow True$ $|$ $True \Rightarrow False))$
+\item exception: None
 \end{itemize}
 
 \subsubsection* {Local Functions}
