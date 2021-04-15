@@ -49,6 +49,14 @@ public class View{
 		System.out.println("Score: " + b.getScore());
 	}
 
+	/**
+	* @brief Displays the best score
+	* @param b The given game board
+	*/
+	public static void printHighScore(BoardT b){
+		System.out.println("Best Score: " + b.getHighScore());
+	}
+
    /**
 	* @brief Displays a message when the game is lost and displays a prompt asking the player if they would like to try again
 	*/
