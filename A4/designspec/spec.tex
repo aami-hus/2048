@@ -102,6 +102,8 @@ getBoard & ~ & seq of (seq of $\mathbb{N}$) & \\
 \hline
 getScore & ~ & $\mathbb{N}$ & \\
 \hline
+getHighScore & ~ & $\mathbb{N}$ & \\
+\hline
 emptyCells & ~ & set of (seq of $\mathbb{N}$) & \\
 \hline
 isGameWon & ~ & $\mathbb{B}$ & \\
@@ -136,13 +138,15 @@ moveDown  &  ~  &  ~     & \\
 
 board: sequence [size, size] of $\mathbb{N}$ \\
 score: $\mathbb{N}$ \\
+highscore: $\mathbb{N}$ \\
 empty: set of (sequence of $\mathbb{N}$) \\
 win: $\mathbb{B}$ \\
 lose: $\mathbb{B}$
 
 \subsubsection* {State Invariant}
 
-None
+$0 \le |empty| \le 14$\\
+$0 \le score \le highscore$
 
 \subsubsection* {Assumptions}
 
@@ -150,6 +154,7 @@ None
   \item The constructor BoardT is called for each object instance before any other access routine 
   is called for that object. 
   \item Assume there is a random function that generates a random value beteern 0 and 1.
+  \item \textit{highscore} is a static variable.
   \item The seq of (seq of $\mathbb{N}$) provided as input for the \textit{setBoard} method will consist of correct numbers. This means that the numbers will be either $0$ to represent an empty cell, or $2^n$, where $n \ne 0$.
   \item The set of (sequence of $\mathbb{N}$) used to represent the state variable \textit{empty} will contain the coordinates for the empty cells of the game board. The sequence of $\mathbb{N}$ will only contain two numbers to represent the row and column of an empty cell. For example, \textit{empty} will be a set of $[row, column]$.
 \end{itemize}
@@ -183,6 +188,12 @@ BoardT():
 \item exception: None
 \end{itemize}
 
+\noindent getHighScore():
+\begin{itemize}
+\item output: $out :=$ highscore
+\item exception: None
+\end{itemize}
+
 \noindent emptyCells():
 \begin{itemize}
 \item output: $out :=$ empty
@@ -207,8 +218,7 @@ BoardT():
   \item output: None
   \item exception: $exc :=$ (($\neg$ ($|b| = 4$) 
   $\Rightarrow$ IllegalArgumentException) $|$ 
-  ($\forall(i : [0...size-1]| (\neg (|b[i]| = 4) \Rightarrow$ False $|$ True $\Rightarrow$ True) 
-  $\Rightarrow$ IllegalArgumentException)))
+  ($\forall(i : [0...size-1]$ $|$ $\neg (|b[i]| = 4) \Rightarrow$ IllegalArgumentException)))
 \end{itemize}
 
 \noindent resetBoard():
@@ -232,9 +242,157 @@ BoardT():
 \item exception: None
 \end{itemize}
 
+\noindent isValidMoveLeft():
+\begin{itemize}
+\item output: $\forall i : [0...size-1]$ $(\forall j : [size-1...1]$ $|$ $(board[i][j] \ne 0 \land board[i][j-1]=0 \Rightarrow True$ $|$ $board[i][j] = board[i][j-1] \land board[i][j], board[i][j-1] \ne 0 \Rightarrow True$ $|$ $True \Rightarrow False))$
+\item exception: None
+\end{itemize}
+
+\noindent isValidMoveUp():
+\begin{itemize}
+\item output: $\forall i : [size-1...1]$ $(\forall j : [0...size-1]$ $|$ $(board[i][j] \ne 0 \land board[i-1][j]=0 \Rightarrow True$ $|$ $board[i][j] = board[i-1][j] \land board[i][j], board[i-1][j] \ne 0 \Rightarrow True$ $|$ $True \Rightarrow False))$
+\item exception: None
+\end{itemize}
+
+\noindent isValidMoveDown():
+\begin{itemize}
+\item output: $\forall i : [0...size-2]$ $(\forall j : [0...size-1]$ $|$ $(board[i][j] \ne 0 \land board[i+1][j]=0 \Rightarrow True$ $|$ $board[i][j] = board[i+1][j] \land board[i][j], board[i+1][j] \ne 0 \Rightarrow True$ $|$ $True \Rightarrow False))$
+\item exception: None
+\end{itemize}
+
+\noindent moveRight():
+\begin{itemize}
+\item transition:\\ 
+board $:=$ $\forall i : [0...size-1]$ $(\forall j : [0...size-2]$ $|$
+\begin{table}[hbt!]
+\centering
+\begin{tabular}{|l|l|l|}
+\cline{3-3}
+\multicolumn{1}{l}{} &  & transition \\
+\hline
+\multicolumn{2}{|l|}{$board[i][j] \ne 0 \land board[i][j+1] = 0$} & board $:=$ shiftRight(i, j, board)\\
+\hline
+\shortstack{$(board[i][j], board[i][j+1] \ne 0$ \\$\land board[i][j] = board[i][j+1]$} & \shortstack{$2\times board[i][j] = 2048 \land$ \\ $\neg$(score $+ \: 2\times board[i][j] > $ highscore) } & \shortstack{board $:=$ combineRight(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ win $:=$ True}\\
+\cline{2-3}
+ & \shortstack{$2\times board[i][j] \ne 2048 \land$ \\ (score $+ \: 2\times board[i][j] > $ highscore) } & \shortstack{board $:=$ combineRight(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ highscore $:=$ score $+\: 2\times board[i][j]$}\\
+\cline{2-3}
+  & \shortstack{$2\times board[i][j] = 2048 \land$ \\ (score $+ \: 2\times board[i][j] > $ highscore) }  & \shortstack{board $:=$ combineRight(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ highscore $:=$ score $+\: 2\times board[i][j]$\\ win $:=$ True}\\
+\cline{2-3}
+  & True & \shortstack{board $:=$ combineRight(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$}\\
+\hline
+\end{tabular}
+\end{table}
+\\
+)\\
+board $:=$ // \textit{Replaces one random empty cell (if it exists) with a \texttt{2} tile.}\\
+lose $:= \neg$ (isValidMoveRight() $\lor$ isValidMoveLeft() $\lor$ isValidMoveUp $\lor$ isValidMoveDown()) $\Rightarrow True$\\
+empty $:= \forall i, j : [0...size-1] | (board[i][j] = 0 \Rightarrow empty \cup \{\langle i, j \rangle\}$ $|$ $True \Rightarrow empty - \{\langle i, j \rangle\}$)
+\item output: None
+\item exception: None
+\end{itemize}
+
+\newpage
+
+\noindent moveLeft():
+\begin{itemize}
+\item transition:\\ 
+board $:=$ $\forall i : [0...size-1]$ $(\forall j : [size-1...1]$ $|$
+\begin{table}[hbt!]
+\centering
+\begin{tabular}{|l|l|l|}
+\cline{3-3}
+\multicolumn{1}{l}{} &  & transition \\
+\hline
+\multicolumn{2}{|l|}{$board[i][j] \ne 0 \land board[i][j-1] = 0$} & board $:=$ shiftLeft(i, j, board)\\
+\hline
+\shortstack{$(board[i][j], board[i][j-1] \ne 0$ \\$\land board[i][j] = board[i][j-1]$} & \shortstack{$2\times board[i][j] = 2048 \land$ \\ $\neg$(score $+ \: 2\times board[i][j] > $ highscore) } & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ win $:=$ True}\\
+\cline{2-3}
+ & \shortstack{$2\times board[i][j] \ne 2048 \land$ \\ (score $+ \: 2\times board[i][j] > $ highscore) } & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ highscore $:=$ score $+\: 2\times board[i][j]$}\\
+\cline{2-3}
+  & \shortstack{$2\times board[i][j] = 2048 \land$ \\ (score $+ \: 2\times board[i][j] > $ highscore) }  & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ highscore $:=$ score $+\: 2\times board[i][j]$\\ win $:=$ True}\\
+\cline{2-3}
+  & True & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$}\\
+\hline
+\end{tabular}
+\end{table}
+\\
+)\\
+board $:=$ // \textit{Replaces one random empty cell (if it exists) with a \texttt{2} tile.}\\
+lose $:= \neg$ (isValidMoveRight() $\lor$ isValidMoveLeft() $\lor$ isValidMoveUp $\lor$ isValidMoveDown()) $\Rightarrow True$\\
+empty $:= \forall i, j : [0...size-1] | (board[i][j] = 0 \Rightarrow empty \cup \{\langle i, j \rangle\}$ $|$ $True \Rightarrow empty - \{\langle i, j \rangle\}$)
+\item output: None
+\item exception: None
+\end{itemize}
+
+\newpage
+
+\noindent moveUp():
+\begin{itemize}
+\item transition:\\ 
+board $:=$ $\forall i : [size-1...1]$ $(\forall j : [0...size-1]$ $|$
+\begin{table}[hbt!]
+\centering
+\begin{tabular}{|l|l|l|}
+\cline{3-3}
+\multicolumn{1}{l}{} &  & transition \\
+\hline
+\multicolumn{2}{|l|}{$board[i][j] \ne 0 \land board[i-1][j] = 0$} & board $:=$ shiftLeft(i, j, board)\\
+\hline
+\shortstack{$(board[i][j], board[i-1][j] \ne 0$ \\$\land board[i][j] = board[i-1][j]$} & \shortstack{$2\times board[i][j] = 2048 \land$ \\ $\neg$(score $+ \: 2\times board[i][j] > $ highscore) } & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ win $:=$ True}\\
+\cline{2-3}
+ & \shortstack{$2\times board[i][j] \ne 2048 \land$ \\ (score $+ \: 2\times board[i][j] > $ highscore) } & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ highscore $:=$ score $+\: 2\times board[i][j]$}\\
+\cline{2-3}
+  & \shortstack{$2\times board[i][j] = 2048 \land$ \\ (score $+ \: 2\times board[i][j] > $ highscore) }  & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ highscore $:=$ score $+\: 2\times board[i][j]$\\ win $:=$ True}\\
+\cline{2-3}
+  & True & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$}\\
+\hline
+\end{tabular}
+\end{table}
+\\
+)\\
+board $:=$ // \textit{Replaces one random empty cell (if it exists) with a \texttt{2} tile.}\\
+lose $:= \neg$ (isValidMoveRight() $\lor$ isValidMoveLeft() $\lor$ isValidMoveUp $\lor$ isValidMoveDown()) $\Rightarrow True$\\
+empty $:= \forall i, j : [0...size-1] | (board[i][j] = 0 \Rightarrow empty \cup \{\langle i, j \rangle\}$ $|$ $True \Rightarrow empty - \{\langle i, j \rangle\}$)
+\item output: None
+\item exception: None
+\end{itemize}
+
+\newpage
+
+\noindent moveDown():
+\begin{itemize}
+\item transition:\\ 
+board $:=$ $\forall i : [0...size-2]$ $(\forall j : [0...size-1]$ $|$
+\begin{table}[hbt!]
+\centering
+\begin{tabular}{|l|l|l|}
+\cline{3-3}
+\multicolumn{1}{l}{} &  & transition \\
+\hline
+\multicolumn{2}{|l|}{$board[i][j] \ne 0 \land board[i+1][j] = 0$} & board $:=$ shiftLeft(i, j, board)\\
+\hline
+\shortstack{$(board[i][j], board[i+1][j] \ne 0$ \\$\land board[i][j] = board[i+1][j]$} & \shortstack{$2\times board[i][j] = 2048 \land$ \\ $\neg$(score $+ \: 2\times board[i][j] > $ highscore) } & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ win $:=$ True}\\
+\cline{2-3}
+ & \shortstack{$2\times board[i][j] \ne 2048 \land$ \\ (score $+ \: 2\times board[i][j] > $ highscore) } & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ highscore $:=$ score $+\: 2\times board[i][j]$}\\
+\cline{2-3}
+  & \shortstack{$2\times board[i][j] = 2048 \land$ \\ (score $+ \: 2\times board[i][j] > $ highscore) }  & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ highscore $:=$ score $+\: 2\times board[i][j]$\\ win $:=$ True}\\
+\cline{2-3}
+  & True & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$}\\
+\hline
+\end{tabular}
+\end{table}
+\\
+)\\
+board $:=$ // \textit{Replaces one random empty cell (if it exists) with a \texttt{2} tile.}\\
+lose $:= \neg$ (isValidMoveRight() $\lor$ isValidMoveLeft() $\lor$ isValidMoveUp $\lor$ isValidMoveDown()) $\Rightarrow True$\\
+empty $:= \forall i, j : [0...size-1] | (board[i][j] = 0 \Rightarrow empty \cup \{\langle i, j \rangle\}$ $|$ $True \Rightarrow empty - \{\langle i, j \rangle\}$)
+\item output: None
+\item exception: None
+\end{itemize}
+
 \subsubsection* {Local Functions}
 
-validateCell: $\mathbb{N} \times \mathbb{N} \rightarrow \mathbb{B}$ 
+shiftRight: $\mathbb{N} \times \mathbb{N} \rightarrow \mathbb{B}$ 
 
 \medskip
 
