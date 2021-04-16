@@ -1,6 +1,6 @@
 /**
  * Author: Aamina Hussain
- * Revised: April 14, 2021
+ * Revised: April 16, 2021
  *
  * Description: A view module that displays the status of the game 2048
  */

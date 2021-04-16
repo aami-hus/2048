@@ -1,8 +1,8 @@
 /**
  * Author: Aamina Hussain, hussaa54
- * Revised: March 29, 2021
+ * Revised: April 16, 2021
  * 
- * Description: Testing AttributeT class
+ * Description: Testing BoardT class
  */
 
 package src;

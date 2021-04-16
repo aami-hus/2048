@@ -1,6 +1,6 @@
 /**
  * Author: Aamina Hussain
- * Revised: April 13, 2021
+ * Revised: April 16, 2021
  *
  * Description: A model module for storing the state and status of the game 2048
  */
