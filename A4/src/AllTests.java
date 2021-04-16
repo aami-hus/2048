@@ -12,10 +12,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-   TestAttributeT.class,	
-   TestLOsT.class,
-   TestCourseT.class,
-   TestProgramT.class
+   TestBoardT.class
 })
 
 public class AllTests
