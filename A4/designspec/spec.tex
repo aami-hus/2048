@@ -171,7 +171,10 @@ BoardT():
       \langle 0, 0, 0, 0 \rangle\\
       \langle 0, 0, 0, 0 \rangle\\
       \end{array} \rangle$ \\ 
-      score, win, lose, empty $=$ 0, False, False, $\cup (\{empty cells\})$
+      where two random empty cells are replaced with two \texttt{2} tiles or one \texttt{2} tile and one \texttt{4} tile.
+
+      score, win, lose $=$ 0, False, False\\
+      empty $:= \forall i, j : [0...size-1] | (board[i][j] = 0 \Rightarrow empty \cup \{\langle i, j \rangle\}$ $|$ $True \Rightarrow empty - \{\langle i, j \rangle\}$)
 \item output: $out := \mathit{self}$
 \item exception: None
 \end{itemize}
@@ -223,7 +226,7 @@ BoardT():
 
 \noindent resetBoard():
 \begin{itemize}
-\item transition: \\
+\item transition:\\
       board $:=$ 
       $\langle \begin{array}{c}
       \langle 0, 0, 0, 0 \rangle\\
@@ -231,7 +234,10 @@ BoardT():
       \langle 0, 0, 0, 0 \rangle\\
       \langle 0, 0, 0, 0 \rangle\\
       \end{array} \rangle$ \\ 
-      score, win, lose, empty $=$ 0, False, False, $\cup (\{empty cells\})$
+      where two random empty cells are replaced with two \texttt{2} tiles or one \texttt{2} tile and one \texttt{4} tile.
+
+      score, win, lose $=$ 0, False, False\\
+      empty $:= \forall i, j : [0...size-1] | (board[i][j] = 0 \Rightarrow empty \cup \{\langle i, j \rangle\}$ $|$ $True \Rightarrow empty - \{\langle i, j \rangle\}$)
 \item output: None
 \item exception: None
 \end{itemize}
@@ -283,8 +289,7 @@ board $:=$ $\forall i : [0...size-1]$ $(\forall j : [0...size-2]$ $|$
 \end{tabular}
 \end{table}
 \\
-)\\
-board $:=$ // \textit{Replaces one random empty cell (if it exists) with a \texttt{2} tile.}\\
+) // \textit{And also replaces one random empty cell (if it exists) with a \texttt{2} tile.}\\
 lose $:= \neg$ (isValidMoveRight() $\lor$ isValidMoveLeft() $\lor$ isValidMoveUp $\lor$ isValidMoveDown()) $\Rightarrow True$\\
 empty $:= \forall i, j : [0...size-1] | (board[i][j] = 0 \Rightarrow empty \cup \{\langle i, j \rangle\}$ $|$ $True \Rightarrow empty - \{\langle i, j \rangle\}$)
 \item output: None
@@ -316,8 +321,7 @@ board $:=$ $\forall i : [0...size-1]$ $(\forall j : [size-1...1]$ $|$
 \end{tabular}
 \end{table}
 \\
-)\\
-board $:=$ // \textit{Replaces one random empty cell (if it exists) with a \texttt{2} tile.}\\
+) // \textit{And also replaces one random empty cell (if it exists) with a \texttt{2} tile.}\\
 lose $:= \neg$ (isValidMoveRight() $\lor$ isValidMoveLeft() $\lor$ isValidMoveUp $\lor$ isValidMoveDown()) $\Rightarrow True$\\
 empty $:= \forall i, j : [0...size-1] | (board[i][j] = 0 \Rightarrow empty \cup \{\langle i, j \rangle\}$ $|$ $True \Rightarrow empty - \{\langle i, j \rangle\}$)
 \item output: None
@@ -336,21 +340,20 @@ board $:=$ $\forall i : [size-1...1]$ $(\forall j : [0...size-1]$ $|$
 \cline{3-3}
 \multicolumn{1}{l}{} &  & transition \\
 \hline
-\multicolumn{2}{|l|}{$board[i][j] \ne 0 \land board[i-1][j] = 0$} & board $:=$ shiftLeft(i, j, board)\\
+\multicolumn{2}{|l|}{$board[i][j] \ne 0 \land board[i-1][j] = 0$} & board $:=$ shiftUp(i, j, board)\\
 \hline
-\shortstack{$(board[i][j], board[i-1][j] \ne 0$ \\$\land board[i][j] = board[i-1][j]$} & \shortstack{$2\times board[i][j] = 2048 \land$ \\ $\neg$(score $+ \: 2\times board[i][j] > $ highscore) } & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ win $:=$ True}\\
+\shortstack{$(board[i][j], board[i-1][j] \ne 0$ \\$\land board[i][j] = board[i-1][j]$} & \shortstack{$2\times board[i][j] = 2048 \land$ \\ $\neg$(score $+ \: 2\times board[i][j] > $ highscore) } & \shortstack{board $:=$ combineUp(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ win $:=$ True}\\
 \cline{2-3}
- & \shortstack{$2\times board[i][j] \ne 2048 \land$ \\ (score $+ \: 2\times board[i][j] > $ highscore) } & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ highscore $:=$ score $+\: 2\times board[i][j]$}\\
+ & \shortstack{$2\times board[i][j] \ne 2048 \land$ \\ (score $+ \: 2\times board[i][j] > $ highscore) } & \shortstack{board $:=$ combineUp(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ highscore $:=$ score $+\: 2\times board[i][j]$}\\
 \cline{2-3}
-  & \shortstack{$2\times board[i][j] = 2048 \land$ \\ (score $+ \: 2\times board[i][j] > $ highscore) }  & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ highscore $:=$ score $+\: 2\times board[i][j]$\\ win $:=$ True}\\
+  & \shortstack{$2\times board[i][j] = 2048 \land$ \\ (score $+ \: 2\times board[i][j] > $ highscore) }  & \shortstack{board $:=$ combineUp(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ highscore $:=$ score $+\: 2\times board[i][j]$\\ win $:=$ True}\\
 \cline{2-3}
-  & True & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$}\\
+  & True & \shortstack{board $:=$ combineUp(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$}\\
 \hline
 \end{tabular}
 \end{table}
 \\
-)\\
-board $:=$ // \textit{Replaces one random empty cell (if it exists) with a \texttt{2} tile.}\\
+) // \textit{And also replaces one random empty cell (if it exists) with a \texttt{2} tile.}\\
 lose $:= \neg$ (isValidMoveRight() $\lor$ isValidMoveLeft() $\lor$ isValidMoveUp $\lor$ isValidMoveDown()) $\Rightarrow True$\\
 empty $:= \forall i, j : [0...size-1] | (board[i][j] = 0 \Rightarrow empty \cup \{\langle i, j \rangle\}$ $|$ $True \Rightarrow empty - \{\langle i, j \rangle\}$)
 \item output: None
@@ -369,21 +372,20 @@ board $:=$ $\forall i : [0...size-2]$ $(\forall j : [0...size-1]$ $|$
 \cline{3-3}
 \multicolumn{1}{l}{} &  & transition \\
 \hline
-\multicolumn{2}{|l|}{$board[i][j] \ne 0 \land board[i+1][j] = 0$} & board $:=$ shiftLeft(i, j, board)\\
+\multicolumn{2}{|l|}{$board[i][j] \ne 0 \land board[i+1][j] = 0$} & board $:=$ shiftDown(i, j, board)\\
 \hline
-\shortstack{$(board[i][j], board[i+1][j] \ne 0$ \\$\land board[i][j] = board[i+1][j]$} & \shortstack{$2\times board[i][j] = 2048 \land$ \\ $\neg$(score $+ \: 2\times board[i][j] > $ highscore) } & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ win $:=$ True}\\
+\shortstack{$(board[i][j], board[i+1][j] \ne 0$ \\$\land board[i][j] = board[i+1][j]$} & \shortstack{$2\times board[i][j] = 2048 \land$ \\ $\neg$(score $+ \: 2\times board[i][j] > $ highscore) } & \shortstack{board $:=$ combineDown(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ win $:=$ True}\\
 \cline{2-3}
- & \shortstack{$2\times board[i][j] \ne 2048 \land$ \\ (score $+ \: 2\times board[i][j] > $ highscore) } & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ highscore $:=$ score $+\: 2\times board[i][j]$}\\
+ & \shortstack{$2\times board[i][j] \ne 2048 \land$ \\ (score $+ \: 2\times board[i][j] > $ highscore) } & \shortstack{board $:=$ combineDown(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ highscore $:=$ score $+\: 2\times board[i][j]$}\\
 \cline{2-3}
-  & \shortstack{$2\times board[i][j] = 2048 \land$ \\ (score $+ \: 2\times board[i][j] > $ highscore) }  & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ highscore $:=$ score $+\: 2\times board[i][j]$\\ win $:=$ True}\\
+  & \shortstack{$2\times board[i][j] = 2048 \land$ \\ (score $+ \: 2\times board[i][j] > $ highscore) }  & \shortstack{board $:=$ combineDown(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$\\ highscore $:=$ score $+\: 2\times board[i][j]$\\ win $:=$ True}\\
 \cline{2-3}
-  & True & \shortstack{board $:=$ combineLeft(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$}\\
+  & True & \shortstack{board $:=$ combineDown(i, j, board)\\ score $:=$ score $+\: 2\times board[i][j]$}\\
 \hline
 \end{tabular}
 \end{table}
 \\
-)\\
-board $:=$ // \textit{Replaces one random empty cell (if it exists) with a \texttt{2} tile.}\\
+) // \textit{And also replaces one random empty cell (if it exists) with a \texttt{2} tile.}\\
 lose $:= \neg$ (isValidMoveRight() $\lor$ isValidMoveLeft() $\lor$ isValidMoveUp $\lor$ isValidMoveDown()) $\Rightarrow True$\\
 empty $:= \forall i, j : [0...size-1] | (board[i][j] = 0 \Rightarrow empty \cup \{\langle i, j \rangle\}$ $|$ $True \Rightarrow empty - \{\langle i, j \rangle\}$)
 \item output: None
@@ -392,49 +394,90 @@ empty $:= \forall i, j : [0...size-1] | (board[i][j] = 0 \Rightarrow empty \cup 
 
 \subsubsection* {Local Functions}
 
-shiftRight: $\mathbb{N} \times \mathbb{N} \rightarrow \mathbb{B}$ 
+shiftRight: $\mathbb{N} \times \mathbb{N} \times$ seq of (seq of $\mathbb{N}$) $\rightarrow$ seq of (seq of $\mathbb{N}$) 
 
 \medskip
 
-\noindent validateCell($x, y$) $\equiv$ $x <$ Size $\wedge$ $y <$ Size $\wedge$ $x >=$ 0 $\wedge$ $y >=$ 0 
-
-\vspace{1.5\baselineskip}
-
-\noindent validateConnectivity: sequence of String $\rightarrow \mathbb{B}$
-
-\medskip
-
-\begin{center}
-\begin{tabular}{|c|c|p{5cm}} 
-\hline
-validateConnectivity(input) $\equiv$ $\forall i : \mathbb{N}| i > 0 \wedge i < 8$ . & $getCell(x,y) == getCell(x_1,y_1)$\\
-$x = input[i][0], y = input[i][1]$ & $(x + 1 == x1 \vee x - 1 == x1) \wedge (y == y1)$ \\ 
-$x_1 = input[i][0], y_1 = input[i-1][1]$ . & $(y + 1 == y1 \vee y - 1 == y1) \wedge (x == x1)$  \\ 
-\hline
-\end{tabular}
-\end{center}
-
-\textit{// Checks the current cell with the previous one. It is valid if they both have the same color and adjacent meaning 
-            either horizontally or vertically connected}
+\noindent shiftRight($i, j, board$) $\equiv$ $\forall x : [j+1...0]$ $|$ $(x = 0 \Rightarrow board[i][x] = 0$ $|$ $True \Rightarrow board[i][x] = board[i][x-1])$
 
 \bigskip
 \bigskip
 
-\noindent markCell: sequence of String \\
+\noindent combineRight: $\mathbb{N} \times \mathbb{N} \times$ seq of (seq of $\mathbb{N}$) $\rightarrow$ seq of (seq of $\mathbb{N}$)
 
-\noindent markCell: $\forall$ $i : \mathbb{N}$ $|$ $i < |input|$ $\wedge$ board[$input[i].charAt[0]][input[i].charAt[1]$] = $CellType.E$
+\medskip
 
-\textit{// mark each coordinate in the input as CellType.E (empty cell)}
+\noindent combineRight($i, j, board$) $\equiv$ $\forall x : [j+1...0]$ $|$ $(x = j+1 \Rightarrow board[i][x] = 2 \times board[i][x]$ $|$ $x = 0 \Rightarrow board[i][x] = 0$ $|$ $True \Rightarrow board[i][x] = board[i][x-1])$
+
+\bigskip
+\bigskip
+
+\noindent shiftLeft: $\mathbb{N} \times \mathbb{N} \times$ seq of (seq of $\mathbb{N}$) $\rightarrow$ seq of (seq of $\mathbb{N}$) 
+
+\medskip
+
+\noindent shiftLeft($i, j, board$) $\equiv$ $\forall x : [j-1...size-1]$ $|$ $(x = 0 \Rightarrow board[i][x] = 0$ $|$ $True \Rightarrow board[i][x] = board[i][x+1])$
+
+\bigskip
+\bigskip
+
+\noindent combineLeft: $\mathbb{N} \times \mathbb{N} \times$ seq of (seq of $\mathbb{N}$) $\rightarrow$ seq of (seq of $\mathbb{N}$)
+
+\medskip
+
+\noindent combineLeft($i, j, board$) $\equiv$ $\forall x : [j-1...size-1]$ $|$ $(x = j-1 \Rightarrow board[i][x] = 2 \times board[i][x]$ $|$ $x = size-1 \Rightarrow board[i][x] = 0$ $|$ $True \Rightarrow board[i][x] = board[i][x+1])$
+
+\bigskip
+\bigskip
+
+\noindent shiftUp: $\mathbb{N} \times \mathbb{N} \times$ seq of (seq of $\mathbb{N}$) $\rightarrow$ seq of (seq of $\mathbb{N}$) 
+
+\medskip
+
+\noindent shiftUp($i, j, board$) $\equiv$ $\forall x : [i-1...size-1]$ $|$ $(x = size-1 \Rightarrow board[x][j] = 0$ $|$ $True \Rightarrow board[x][j] = board[x+1][j])$
+
+\bigskip
+\bigskip
+
+\noindent combineUp: $\mathbb{N} \times \mathbb{N} \times$ seq of (seq of $\mathbb{N}$) $\rightarrow$ seq of (seq of $\mathbb{N}$)
+
+\medskip
+
+\noindent combineUp($i, j, board$) $\equiv$ $\forall x : [i-1...size-1]$ $|$ $(x = i-1 \Rightarrow board[x][j] = 2 \times board[x][j]$ $|$ $x = size-1 \Rightarrow board[x][j] = 0$ $|$ $True \Rightarrow board[x][j] = board[x+1][j])$
+
+\bigskip
+\bigskip
+
+\noindent shiftDown: $\mathbb{N} \times \mathbb{N} \times$ seq of (seq of $\mathbb{N}$) $\rightarrow$ seq of (seq of $\mathbb{N}$) 
+
+\medskip
+
+\noindent shiftDown($i, j, board$) $\equiv$ $\forall x : [i+1...0]$ $|$ $(x = 0 \Rightarrow board[x][j] = 0$ $|$ $True \Rightarrow board[x][j] = board[x-1][j])$
+
+\bigskip
+\bigskip
+
+\noindent combineDown: $\mathbb{N} \times \mathbb{N} \times$ seq of (seq of $\mathbb{N}$) $\rightarrow$ seq of (seq of $\mathbb{N}$)
+
+\medskip
+
+\noindent combineDown($i, j, board$) $\equiv$ $\forall x : [i+1...0]$ $|$ $(x = i+1 \Rightarrow board[x][j] = 2 \times board[x][j]$ $|$ $x = 0 \Rightarrow board[x][j] = 0$ $|$ $True \Rightarrow board[x][j] = board[x-1][j])$
+
+\bigskip
+\bigskip
+
 
 \newpage
 
-\section* {UserInterface Module}
+\section* {View Module (Abstract Object)}
 
-\subsection* {UserInterface Module}
+\subsection* {Module}
+
+View
 
 \subsection* {Uses}
 
-None
+BoardT
 
 \subsection* {Syntax}
 
@@ -452,19 +495,21 @@ None
 \hline
 \textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline
-getInstance & ~ & UserInterface &  \\
+printWelcomeMessage & ~ & ~ &  \\
 \hline
 printBoard & BoardT & ~ & \\
 \hline
-printWelcomeMessage & ~ & ~ & \\
+printMovePrompt & ~ & ~ & \\
 \hline
-printGameModePrompt & ~ & ~ & \\
+printScore & BoardT & ~ & \\
 \hline
-printCoordPrompt & ~ & ~ & \\
+printHighScore & BoardT & ~ & \\
 \hline
-printCondition & String & ~ & \\
+printLosingMessage & ~ & ~ & \\
 \hline
-printEndingMessage & ~ & ~ & \\
+printWinningMessage & ~ & ~ & \\
+\hline
+printFarewellMessage & ~ & ~ & \\
 \hline
 \end{tabular}
 
@@ -472,75 +517,57 @@ printEndingMessage & ~ & ~ & \\
 
 \subsection*{Environment Variables}
 
-window: A portion of computer screen to display the game and messages
+terminal: displays the game, messages, and prompts to the user
 
 \subsubsection* {State Variables}
 
-visual: UserInterface
+None
 
 \subsubsection* {State Invariant}
 
 None
 
-\subsubsection* {Assumptions}
-
-\begin{itemize}
-\item The UserInterface constructor is called for each object instance before any
-other access routine is called for that object.  The constructor can only be
-called once.
-\end{itemize}
-
 \subsubsection* {Access Routine Semantics}
-
-\noindent getInstance():
-\begin{itemize}
-  \item transition: visual $:=$ (visual = null $\Rightarrow$ new UserInterface())
-  \item output: \textit{self}
-  \item exception: None
-\end{itemize}
 
 \noindent printWelcomeMessage():
 \begin{itemize}
-\item transition: window $:=$ Displays a welcome message when user first enter the game.
+  \item transition: terminal $:=$ Displays a welcome message when the player begins the game for the first time.
 \end{itemize}
 
-\noindent printBoard($board$):
+\noindent printBoard():
 \begin{itemize}
-\item transition: window $:=$ Draws the game board onto the screen. Each cell of the board
-                  is accessed using the $getCell$ method from $BoardT$. The board[x][y] is displayed 
-                  in a way such that x is increasing from the left of the screen to the right,
-                  and y value is increasing from the bottom to the top of the screen. For example,
-                  board[0][0] is displayed at the bottom left corner and board[7][7] is displayed 
-                  at top-right corner. 
+\item transition: terminal $:=$ Displays the game board. The cells can be accessed by using the $getBoard$ method from $BoardT$. The board is displayed as a 4x4 matrix, so each row of cells is on a separate line. The board[x][y] is displayed so that x increases as you go right across the screen, and y increases as you go down the screen.
 \end{itemize}
 
-\noindent printGameModePrompt():
+\noindent printMovePrompt():
 \begin{itemize}
-\item transition: window $:=$ Window appends a prompt message asking the user to select a
-                              game mode he/she wants to play.
+\item transition: terminal $:=$ Displays a prompt asking the player to select which direction they want to move the tiles.
 \end{itemize}
 
-\noindent printCoordPrompt():
+\noindent printScore($b$):
 \begin{itemize}
-\item transition: window $:=$ Appends a prompt message asking the user to enter a sequence
-                              of coordinates where the dots will be eliminated.
+\item transition: terminal $:=$ Displays the current score of the game, which can be accessed by using the $getScore$ method from $BoardT$.
 \end{itemize}
 
-\noindent printCondition($message$):
+\noindent printHighScore($b$):
 \begin{itemize}
-\item transition: Appends the $message$ onto the screen, the $message$ shows the objective of current game. Also, the amount of moves
-                  of number of specific dots remanin to complete the game.
+\item transition: terminal $:=$ Displays the best/highest score of the game, which can be accessed by using the $getHighScore$ method from $BoardT$.
 \end{itemize}
 
-\noindent printEndingMessage():
+\noindent printLosingMessage():
 \begin{itemize}
-\item transition: Prints a ending message after the user exit the game (entered ``e'').
+\item transition: terminal $:=$ Displays a message telling the player they lost, then displays a prompt asking the player if they would like to try again or exit the game.
 \end{itemize}
 
-\subsubsection*{Local Function:}
+\noindent printWinningMessage():
+\begin{itemize}
+\item transition: terminal $:=$ Displays a message telling the player they won, then displays a prompt asking the player if they would like to continue the current game, start a new game, or exit the game.
+\end{itemize}
 
-UserInterface: void $\rightarrow$ UserInterface \\
-UserInterface() $\equiv$ new UserInterface()
+\noindent printFarewellMessage():
+\begin{itemize}
+\item transition: terminal $:=$ Displays a farewell message after the player decides to exit the game.
+\end{itemize}
 
 \newpage
 
