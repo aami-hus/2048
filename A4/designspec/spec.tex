@@ -9,6 +9,7 @@
 \usepackage{multirow}
 \usepackage{multicol}
 \usepackage{url}
+\usepackage{pdfpages}
 
 \oddsidemargin -10mm
 \evensidemargin -10mm
@@ -45,11 +46,11 @@
 \maketitle
 This Module Interface Specification (MIS) document contains the modules necessary to implement the model and the view of the game \textit{2048}. At the start of the game, the player will see a 4x4 board containing 16 cells. Two random cells will contain either two \texttt{2} tiles, or one \texttt{2} tile and one \texttt{4} tile. The player can then move the tiles either up, down, left, or right, and the tiles slide over in that direction as far as they can go, unless they are blocked by the edge of the board, or another tile. If the tiles that slide together are the same, then they combine to create a single tile whose value is two times its original value. Therefore, all cells are either empty, or contain a tile whose value is $2^n$, where $n$ is a natural number not including $0$. For this implementation, the empty cells will be represented by a \texttt{0} tile. A visualization of the game board and an example of a move \texttt{right} is shown below:
 
-\begin{center}
-  \includegraphics[width=0.7\textwidth]{naming.png}
+% \begin{center}
+%   \includegraphics[width=0.7\textwidth]{naming.png}
 
-  The above board visualization is from https://play2048.co
-\end{center}
+%   The above board visualization is from https://play2048.co
+% \end{center}
 
 \newpage
 
@@ -517,7 +518,7 @@ printFarewellMessage & ~ & ~ & \\
 
 \subsection*{Environment Variables}
 
-terminal: displays the game, messages, and prompts to the user
+terminal: displays the game, messages, and prompts to the player
 
 \subsubsection* {State Variables}
 
@@ -614,13 +615,14 @@ None
   
 \end{itemize}
 
+\noindent Q1: Draw a UML diagram for the modules in A3.
 
+\noindent Q2: Draw a control flow graph for the convex hull algorithm
 
-\noindent Q2: Draw a control flow graph for bubble sort algorithm
-
-\begin{center}
-  \includegraphics[width=0.3\textwidth]{Control_Flow_Graph.png} \\
-  The control flow graph is constructed using https://app.diagrams.net/
-\end{center}
+%\includepdf[pages=-]{ControlFlow}
+% \begin{center}
+%   \includegraphics[width=0.3\textwidth]{Control_Flow_Graph.png} \\
+%   The control flow graph is constructed using https://app.diagrams.net/
+% \end{center}
 
 \end {document}
