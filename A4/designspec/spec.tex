@@ -44,12 +44,10 @@
 \begin{document}
 
 \maketitle
-This Module Interface Specification (MIS) document contains the modules necessary to implement the model and the view of the game \textit{2048}. At the start of the game, the player will see a 4x4 board containing 16 cells. Two random cells will contain either two \texttt{2} tiles, or one \texttt{2} tile and one \texttt{4} tile. The player can then move the tiles either up, down, left, or right, and the tiles slide over in that direction as far as they can go, unless they are blocked by the edge of the board, or another tile. If the tiles that slide together are the same, then they combine to create a single tile whose value is two times its original value. Therefore, all cells are either empty, or contain a tile whose value is $2^n$, where $n$ is a natural number not including $0$. For this implementation, the empty cells will be represented by a \texttt{0} tile. A visualization of the game board and an example of a move \texttt{right} is shown below:
+This Module Interface Specification (MIS) document contains the modules necessary to implement the model and the view of the game \textit{2048}. At the start of the game, the player will see a 4x4 board containing 16 cells. Two random cells will contain either two \texttt{2} tiles, or one \texttt{2} tile and one \texttt{4} tile. The player can then move the tiles either up, down, left, or right, and the tiles slide over in that direction as far as they can go, unless they are blocked by the edge of the board, or another tile. If the tiles that slide together are the same, then they combine to create a single tile whose value is two times its original value. Therefore, all cells are either empty, or contain a tile whose value is $2^n$, where $n$ is a natural number not including $0$. After that, a random empty cell will be replaced by a \texttt{2} tile. For this implementation, the empty cells will be represented by a \texttt{0} tile. A visualization of the game board and an example of a move \texttt{right} is shown below:
 
 % \begin{center}
-%   \includegraphics[width=0.7\textwidth]{naming.png}
-
-%   The above board visualization is from https://play2048.co
+%   \includegraphics[width=0.7\textwidth]{moveright.png}
 % \end{center}
 
 \newpage
@@ -63,10 +61,10 @@ This design applies Model View Controller (MVC) design pattern, where \textit{Bo
 \subsection*{Likely Changes my design considers:}
 
 \begin{itemize}
-  \item Data structure used for storing the game board
-  \item  
-  \item 
-  \item Change in game ending conditions to adjust the difficulty of the game.
+  \item The interface that enables the player to play the game.
+  \item The peripheral devices used to take input from the player.
+  \item The data structure used for storing the board.
+  \item The interface that provides a visual display of the game to the player.
 \end{itemize}
 
 \newpage
@@ -580,16 +578,17 @@ None
   \item The $resetBoard()$ method from the BoardT module is not essential, since instead of resetting the board/game, you can also just create a new instance of the board.
   \item The $emptyCells()$ method from the BoardT module is also not essential. You can figure out which cells are empty by looking at the board, which you can see by using the $getBoard()$ method.
   \item The BoardT module is not minimal. This is because $resetBoard()$, $moveRight()$, $moveLeft()$, $moveUp()$, and $moveDown()$ all make changes to multiple state variables at once. For example, $moveRight()$ changes the state of the board, the score, the empty cells, and possibly even win, lose, and the highscore.
-  \item I could have applied the strategy design pattern and made the implementation more general if I created interfaces for the isValidMove and move methods. There was a lot of repetition implementing them all (isValidMoveRight, isValidMoveLeft, moveRight, moveLeft, etc.), ???
-  \item The setBoard method is mostly for the programmer and can be used for testing purposes. This way you know what the board looks like, and it is not randomly generated. A randomly generated board makes it difficult to use automated testing.
-  \item test cases?
-  \item Applying MVC (or MV in this case) improves the maintainability of the design. It also applies separation of concerns since the model module and view module contain independent stuff. The model module handles the status etc and the view module displays the current state of the game.
-  \item the MVC design pattern (?) promotes high cohesion 
-  \item the MVC design pattern also promotes low coupling since the model and view modules are almost entirely independent of each other. this way changing one module will not greatly affect the other module.
+  \item The $setBoard()$ method is mostly for the programmer and can be used for testing purposes. This way the programmer knows what the board looks like, and it is not randomly generated. A randomly generated board makes it difficult to use automated testing.
+  \item My implementation of the $moveRight()$, $moveLeft()$, $moveUp()$, and $moveDown()$ methods were not very abstract or general, since they only account for a 4x4 game board.
+  \item Applying the MVC (or MV in this case) design pattern promotes the maintainability of the interface. It also applies separation of concerns since the model module and view module contain methods mostly independent of each other; the model module handles storing the state and status of the game, while the view module displays the current status of the game.
+  \item The MVC design pattern promotes high cohesion since BoardT and View are closely related. The methods of View are based entirely on the model of the game implemented in BoardT.
+  \item The MVC design pattern also promotes low coupling since the model and view modules are almost entirely independent of each other. This way, changing one module will not greatly affect the other module.
   
 \end{itemize}
 
-\newpage
+\bigskip
+
+\section*{Answers to Questions}
 
 \noindent Q1: Draw a UML diagram for the modules in A3.
 
@@ -599,10 +598,5 @@ None
 
 \includepdf[pages=-]{A3UML.pdf}
 \includepdf[pages=-]{ControlFlow.pdf}
-
-% \begin{center}
-%   \includegraphics[width=0.3\textwidth]{Control_Flow_Graph.png} \\
-%   The control flow graph is constructed using https://app.diagrams.net/
-% \end{center}
 
 \end {document}
