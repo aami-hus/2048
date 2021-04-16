@@ -46,9 +46,9 @@
 \maketitle
 This Module Interface Specification (MIS) document contains the modules necessary to implement the model and the view of the game \textit{2048}. At the start of the game, the player will see a 4x4 board containing 16 cells. Two random cells will contain either two \texttt{2} tiles, or one \texttt{2} tile and one \texttt{4} tile. The player can then move the tiles either up, down, left, or right, and the tiles slide over in that direction as far as they can go, unless they are blocked by the edge of the board, or another tile. If the tiles that slide together are the same, then they combine to create a single tile whose value is two times its original value. Therefore, all cells are either empty, or contain a tile whose value is $2^n$, where $n$ is a natural number not including $0$. After that, a random empty cell will be replaced by a \texttt{2} tile. For this implementation, the empty cells will be represented by a \texttt{0} tile. A visualization of the game board and an example of a move \texttt{right} is shown below:
 
-% \begin{center}
-%   \includegraphics[width=0.7\textwidth]{moveright.png}
-% \end{center}
+\begin{center}
+  \includegraphics[width=0.9\textwidth]{moveright.PNG}
+\end{center}
 
 \newpage
 
@@ -152,7 +152,7 @@ $0 \le score \le highscore$
 \begin{itemize}
   \item The constructor BoardT is called for each object instance before any other access routine 
   is called for that object. 
-  \item Assume there is a random function that generates a random value beteern 0 and 1.
+  \item Assume there is a random function that generates a random value between 0 and 1.
   \item \textit{highscore} is a static variable.
   \item The seq of (seq of $\mathbb{N}$) provided as input for the \textit{setBoard} method will consist of correct numbers. This means that the numbers will be either $0$ to represent an empty cell, or $2^n$, where $n \ne 0$.
   \item The set of (sequence of $\mathbb{N}$) used to represent the state variable \textit{empty} will contain the coordinates for the empty cells of the game board. The sequence of $\mathbb{N}$ will only contain two numbers to represent the row and column of an empty cell. For example, \textit{empty} will be a set of $[row, column]$.
