@@ -304,11 +304,19 @@ You can assume that inputs outside of the range 1 to 1000 do not occur.
   \wss{answer here - you can answer in natural language, or using mathematical
     notation.}
 
+  The set $D_0$ is the set of integers ranging from 1 to 1000 that are multiples of 5. (This means there is no remainder when the integer is divided by 5.)\\
+  The set $D_1$ is the set of integers ranging from 1 to 1000 that are multiples of 7. (This means there is no remainder when the integer is divided by 7.)\\
+  The set $D_2$ is the set of integers ranging from 1 to 1000 that are in BOTH set $D_0$ and set $D_1$.\\
+  The set $D_3$ is the set of integers ranging from 1 to 1000 that are NOT in set $D_0$ or set $D_1$.
+
+
 \item Given the sets $D_i$, and the heuristics discussed in class, how would you
   go about selecting test cases?
 
   \wss{answer here - you don't need specific test cases; your answer should
     characterize how all significant test cases are to be chosen.}
+
+  The sets represent subdomains of the domain of integers ranging from 1 to 1000. I would choose one element to represent each subdomain. (One element of each set described above will represent each subdomain.) These elements will be used to test each subdomain. This means one element/test case from set $D_0$, $D_1$, $D_2$, and $D_3$. We can also test the boundaries/limits by having both 1 and 1000 as test cases. Since we are assuming that inputs outside of the range 1 to 1000 do not occur, we do not need to test for this case.
   
 \end{enumerate}
   
