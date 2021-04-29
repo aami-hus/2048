@@ -202,7 +202,7 @@ by secrets hierarchy.
 \item \textbf{Does the specification for maze tracing robot require environment
     variables?  If so, which environment variables are needed?}
 
-  Yes, the specification does require environment variables. This includes the hardware interface to the robot. This means things like the motor and sensors in the robot arm. The list of environental variables given in the publication include i\_mazeWalls, i\_mazeStart, i\_mazeEnd
+  Yes, the specification does require environment variables. This includes the hardware interface to the robot. This means things like the motor and sensors in the robot arm. The list of environental variables given in the publication include i\_mazeWalls, i\_mazeStart, i\_mazeEnd, i\_stopButton, i\_homeButton, i\_backButton, i\_mazeFile, o\_penPos, o\_penDown, o\_powerOn, and o\_message.
 
 \end{enumerate}
 
@@ -228,16 +228,16 @@ opponent.
   timeline for achieving these milestones do you propose?  You can indicate the
   time a milestone is reached by the number of months from the project's start date.}
 
-  - answer here
+  The requirements of the project, a rough outline of the design specification, and ideas for the test cases for the modules should be completed by the end of month 1. The part of the video game where you play over the network between two human opponents should be completed by the end of month 2. The part of the video game where you play locally between a human and an AI opponent should be completed by the end of month 3. Months 4 and 5 should be used to come up with more test cases and test the code. Update the code accordingly, and come up with a way to verify the verification (test cases). Month 6 should be used to make some adjustments to the code as needed. By the end of month 8, the design specification and code should be finalized. There is some extra time left over (month 7) in case we need to redo the rational design process.
   
 \item \textbf{Everything in your process should be verified, including the
     verification.  How might you verify your verification?}
 
-  - answer here
+  We could verify the verification by getting the group of five together and doing a code walkthrough and a code inspection. We could also test the test cases using mutation testing.
   
 \item \textbf{How do you propose verifying the installability of your game?}
 
-  - answer here
+  We can verify the installability of the game using a virtual machine. Having a virtual machine is essentially like having a computer with a clean slate. This gives you the perfect environment to test the installability of the game.
   
 \end{enumerate}
 
