@@ -193,16 +193,16 @@ by secrets hierarchy.
 \item \textbf{Is this module Hardware Hiding, Software Decision Hiding or
     Behaviour Hiding?  Why?}
 
-  - answer here
+  This module is software decision hiding. This is because it actually actively does something; in this case, it finds the shortest path in a graph. This is a generic service that are likely to be used by other projects as well.
 
 \item \textbf{Is this a good secret?  Why?}
 
-  - answer here
+  No, it is not a good secret. Usually, one module contains only one secret, but in this case, this module contains both a data structure and an algorithm, which are two separate things and therefore two secrets.
 
 \item \textbf{Does the specification for maze tracing robot require environment
     variables?  If so, which environment variables are needed?}
 
-  - answer here
+  Yes, the specification does require environment variables. This includes the hardware interface to the robot. This means things like the motor and sensors in the robot arm. The list of environental variables given in the publication include i\_mazeWalls, i\_mazeStart, i\_mazeEnd
 
 \end{enumerate}
 
